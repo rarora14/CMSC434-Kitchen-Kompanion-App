@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team App Prototype</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main content area -->
+  <div id="content">
+    <!-- Tab 1: Text -->
+    <div id="tab1" class="tab-content">
+      <h2>Scrollable Text</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, sem et convallis placerat, justo erat ultricies leo, eu dictum sem urna at urna. Mauris nec quam et urna efficitur cursus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam a molestie velit, eu scelerisque enim.</p>
+      <p>(Add more text for scrolling...)</p>
+    </div>
+    <!-- Tab 2: LR -->
+    <div id="tab2" class="tab-content hidden">
+      <div style="display:flex; justify-content:flex-end; align-items:flex-end; height:100%;">
+        <p>Down Here</p>
+      </div>
+    </div>
+    <!-- Tab 3: Colors -->
+    <div id="tab3" class="tab-content hidden">
+      <p style="color: yellow; background: black;">Yellow text on black</p>
+      <p style="color: purple; background: yellow;">Purple text on yellow</p>
+    </div>
+    <!-- Tab 4: Profile -->
+    <div id="tab4" class="tab-content hidden" style="text-align:center;">
+      <img src="icons/profile.png" alt="Profile"
+           style="width:100px; cursor:pointer;" onclick="showProfileAlert()">
+      <p><b>John Doe</b></p>
+    </div>
+    <!-- Tab 5: Choices -->
+    <div id="tab5" class="tab-content hidden">
+      <h3>Choices</h3>
+      <p>
+        Pick a color:
+        <label><input type="radio" name="color" value="Red"> Red</label>
+        <label><input type="radio" name="color" value="Blue"> Blue</label>
+      </p>
+      <p>
+        Choose a fruit:
+        <select id="fruitSelect">
+          <option value="Apple">Apple</option>
+          <option value="Banana">Banana</option>
+          <option value="Orange">Orange</option>
+        </select>
+      </p>
+      <button onclick="showChoice()">Show Choice</button>
+      <p id="choiceResult"></p>
+    </div>
+    <!-- Tab 6: ToDo -->
+    <div id="tab6" class="tab-content hidden">
+      <h3>To Do List</h3>
+      <input type="text" id="todoInput" placeholder="New task">
+      <button onclick="addTodo()">Add</button>
+      <ul id="todoList"></ul>
+    </div>
+  </div>
+  <!-- Bottom navigation -->
+  <div class="navbar">
+    <button onclick="openTab('tab1')">
+      <img src="icons/text.png" alt="Text"><br>Text
+    </button>
+    <button onclick="openTab('tab2')">
+      <img src="icons/lr.png" alt="LR"><br>LR
+    </button>
+    <button onclick="openTab('tab3')">
+      <img src="icons/colors.png" alt="Colors"><br>Colors
+    </button>
+    <button onclick="openTab('tab4')">
+      <img src="icons/profile.png" alt="Profile"><br>Profile
+    </button>
+    <button onclick="openTab('tab5')">
+      <img src="icons/choices.png" alt="Choices"><br>Choices
+    </button>
+    <button onclick="openTab('tab6')">
+      <img src="icons/todo.png" alt="ToDo"><br>ToDo
+    </button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
