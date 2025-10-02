@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
 //show selected choices
 function showChoice() {
   const color = document.querySelector('input[name="color"]:checked');
-  const fruit = document.getElementById('fruitSelect');
+  const team = document.getElementById('teamSelect');
   let result = 'You chose: ';
   result += color ? color.value : 'No color';
-  result += ' and ' + (fruit ? fruit.value : 'No fruit');
+  result += ' and ' + (team ? team.value : 'No team');
   document.getElementById('choiceResult').textContent = result;
 }
 
