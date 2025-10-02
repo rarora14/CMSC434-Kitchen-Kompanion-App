@@ -21,55 +21,165 @@
       display: flex;
       flex-direction: column;
     }
+    .device-content {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .tab-content {
+      flex: 1 1 0;
+      display: none;
+      overflow-y: auto;
+      padding: 32px 24px 90px 24px; /* extra bottom padding for navbar */
+      box-sizing: border-box;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .navbar {
+      height: 70px;
+      display: flex;
+      background-color: #fff8f0;
+      border-top: 2px solid #e0bfae;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+    }
+    .navbar button {
+      flex: 1;
+      background: none;
+      border: none;
+      font-size: 15px;
+      text-align: center;
+      color: #a05a2c;
+      padding: 8px 0 0 0;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .navbar button.active, .navbar button:hover, .navbar button:focus {
+      background: #ffe5d0;
+      font-weight: bold;
+    }
     body {
       background: #eaeaea;
     }
+    /* Profile modal */
+    #profileModal {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    #profileModal .modal-content {
+      background: #fff;
+      padding: 32px 24px;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    #profileModal.hidden { display: none; }
+    /* ToDo list */
+    #todoList li {
+      margin: 8px 0;
+      cursor: pointer;
+      transition: color 0.2s, text-decoration 0.2s;
+    }
+    #todoList li.done {
+      text-decoration: line-through;
+      color: #aaa;
+    }
   </style>
   <div class="device-frame">
-    <div id="content">
-      <!-- Home Tab -->
-      <div id="tab1" class="tab-content">
-        <h2>Welcome to Kitchen Kompanion</h2>
-        <p>Your all-in-one kitchen assistant. Navigate using the tabs above to manage recipes, groceries, timers, and more!</p>
+    <div class="device-content">
+      <!-- Tab 1: Text -->
+      <div id="tab1" class="tab-content active">
+        <h2>Text</h2>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
+        <p>End of Super Long Text</p>
       </div>
-      <!-- Recipes Tab -->
-      <div id="tab2" class="tab-content hidden">
-        <h2>Recipes</h2>
-        <p>Browse, add, and manage your favorite recipes here.</p>
+      <!-- Tab 2: LR -->
+      <div id="tab2" class="tab-content" style="position:relative;">
+        <h2>Text in the bottom right corner</h2>
+          <span style="position:fixed; right:calc(50vw - 320px + 20px); bottom:calc(50vh - 480px + 90px); font-size:1.5em; z-index:10;">Down Here</span>
       </div>
-      <!-- Groceries Tab -->
-      <div id="tab3" class="tab-content hidden">
-        <h2>Grocery List</h2>
-        <p>Keep track of your grocery needs and shopping list.</p>
+      <!-- Tab 3: Colors -->
+      <div id="tab3" class="tab-content">
+        <h2>Color</h2>
+        <div style="margin:40px 0 0 0;">
+          <div style="color: yellow; background: black; padding: 8px;">Yellow text on black</div>
+          <div style="color: purple; background: yellow; padding: 8px;">Purple text on yellow</div>
+        </div>
       </div>
-      <!-- Timer Tab -->
-      <div id="tab4" class="tab-content hidden">
-        <h2>Kitchen Timer</h2>
-        <p>Set and manage timers for your cooking tasks.</p>
+      <!-- Tab 4: Profile -->
+      <div id="tab4" class="tab-content" style="text-align:center;">
+        <h2>Profile</h2>
+        <div id="profileImg" style="width:100px; height:100px; border-radius:50%; margin-top:60px; cursor:pointer; font-size:80px; display:flex; align-items:center; justify-content:center; background:#fff; margin-left:auto; margin-right:auto;">😊</div>
+        <p><b>John Doe</b></p>
+        <div id="profileModal" class="hidden">
+          <div class="modal-content">
+            <p style="font-size:1.2em;">Hello, John Doe!</p>
+            <button onclick="closeProfileAlert()" style="margin-top:16px; padding:8px 20px; border-radius:8px; border:none; background:#e0bfae; color:#5a2c06; font-weight:bold; cursor:pointer;">Close</button>
+          </div>
+        </div>
       </div>
-      <!-- Settings Tab -->
-      <div id="tab5" class="tab-content hidden">
-        <h2>Settings</h2>
-        <p>Customize your Kitchen Kompanion experience.</p>
+      <!-- Tab 5: Choices -->
+      <div id="tab5" class="tab-content">
+        <h3>Choices</h3>
+        <p>
+          Pick a color:
+          <label><input type="radio" name="color" value="Red"> Red</label>
+          <label><input type="radio" name="color" value="Blue"> Blue</label>
+        </p>
+        <p>
+          Choose a fruit:
+          <select id="fruitSelect">
+            <option value="Apple">Apple</option>
+            <option value="Banana">Banana</option>
+            <option value="Orange">Orange</option>
+          </select>
+        </p>
+        <button onclick="showChoice()">Show Choice</button>
+        <p id="choiceResult"></p>
+      </div>
+      <!-- Tab 6: ToDo -->
+      <div id="tab6" class="tab-content">
+        <h3>To Do List</h3>
+        <input type="text" id="todoInput" placeholder="New task">
+        <button onclick="addTodo()">Add</button>
+        <ul id="todoList"></ul>
       </div>
     </div>
     <!-- Bottom navigation -->
-    <div class="navbar top-navbar">
-      <button onclick="openTab('tab1')">
-        <img src="icons/home.svg" alt="Home"><br>Home
-      </button>
-      <button onclick="openTab('tab2')">
-        <img src="icons/recipes.svg" alt="Recipes"><br>Recipes
-      </button>
-      <button onclick="openTab('tab3')">
-        <img src="icons/groceries.svg" alt="Groceries"><br>Groceries
-      </button>
-      <button onclick="openTab('tab4')">
-        <img src="icons/timer.svg" alt="Timer"><br>Timer
-      </button>
-      <button onclick="openTab('tab5')">
-        <img src="icons/settings.svg" alt="Settings"><br>Settings
-      </button>
+    <div class="navbar">
+      <button id="tabBtn1" onclick="openTab('tab1')">Text</button>
+      <button id="tabBtn2" onclick="openTab('tab2')">LR</button>
+      <button id="tabBtn3" onclick="openTab('tab3')">Colors</button>
+      <button id="tabBtn4" onclick="openTab('tab4')">Profile</button>
+      <button id="tabBtn5" onclick="openTab('tab5')">Choices</button>
+      <button id="tabBtn6" onclick="openTab('tab6')">ToDo</button>
     </div>
   </div>
   <script src="script.js"></script>

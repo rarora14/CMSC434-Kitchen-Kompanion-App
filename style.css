@@ -14,6 +14,12 @@ body {
 
 .tab-content {
   display: block;
+  height: 700px;
+  position: relative;
+}
+.scrollable-text {
+  height: 100%;
+  overflow-y: auto;
 }
 
 .hidden {
