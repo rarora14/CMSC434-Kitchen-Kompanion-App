@@ -151,28 +151,29 @@
         <h3>Choices</h3>
         <p>
           Pick a color:
-          <label><input type="radio" name="color" value="Red"> Red</label>
-          <label><input type="radio" name="color" value="Blue"> Blue</label>
+          <label><input type="radio" name="color" value="Green"> Green</label>
+          <label><input type="radio" name="color" value="Purple"> Purple</label>
         </p>
         <p>
-          Choose a fruit:
-          <select id="fruitSelect">
-            <option value="Apple">Apple</option>
-            <option value="Banana">Banana</option>
-            <option value="Orange">Orange</option>
+          Choose a team:
+          <select id="teamSelect">
+            <option value="Eagles">Eagles</option>
+            <option value="Ravens">Ravens</option>
+            <option value="Commanders">Commanders</option>
           </select>
         </p>
         <button onclick="showChoice()">Show Choice</button>
         <p id="choiceResult"></p>
       </div>
-      <!-- Tab 6: ToDo -->
+      <!-- Tab 6: ToDo --> 
       <div id="tab6" class="tab-content">
-        <h3>To Do List</h3>
-        <input type="text" id="todoInput" placeholder="New task">
-        <button onclick="addTodo()">Add</button>
-        <ul id="todoList"></ul>
+        <div id="myDIV" class="header">
+          <h2>My To Do List</h2>
+          <input type="text" id="myInput" placeholder="Title...">
+          <span onclick="newElement()" class="addBtn">Add</span>
+        </div>
+        <ul id="myUL"></ul>
       </div>
-    </div>
      <!-- Icons from https://icons8.com/icons -->
     <div class="navbar">
       <button id="tabBtn1" onclick="openTab('tab1')"><img src="icons/text.png"></img><br>Text</button>

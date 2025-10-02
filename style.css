@@ -59,3 +59,36 @@ body {
   height: 28px;
   margin-bottom: 2px;
 }
+
+/*ToDo Add Button */
+.addBtn {
+  padding: 4px 12px;
+  margin-left: 6px;
+  background: #eee;
+  color: #333;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.addBtn:hover {
+  background: #ddd;
+}
+
+/*ToDo Close (X) Button */
+.close {
+  margin-left: 10px;
+  background: #eee;
+  color: #333;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+.close:hover {
+  background: #ddd;
+}
