@@ -26,6 +26,7 @@ body {
   display: none;
 }
 
+/* https://codehim.com/html5-css3/mobile-bottom-navigation-bar-html-css/ */
 .navbar {
   position: absolute;
   bottom: 0;

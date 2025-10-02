@@ -1,5 +1,5 @@
 
-
+// https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role
 function openTab(tabId) {
   // Remove active from all tabs and buttons
   document.querySelectorAll('.tab-content').forEach((el, idx) => {
@@ -16,6 +16,7 @@ function openTab(tabId) {
   }
 }
 
+//https://www.w3schools.com/howto/howto_css_modals.asp
 function closeProfileAlert() {
   document.getElementById('profileModal').classList.add('hidden');
 }
@@ -40,6 +41,7 @@ function showChoice() {
   document.getElementById('choiceResult').textContent = result;
 }
 
+//https://www.w3schools.com/howto/howto_js_todolist.asp
 function addTodo() {
   const input = document.getElementById('todoInput');
   const list = document.getElementById('todoList');
