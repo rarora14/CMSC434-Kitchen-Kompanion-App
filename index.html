@@ -96,93 +96,61 @@
   <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
   <div class="device-frame">
     <div class="device-content">
-      <!-- Tab 1: Text -->
+      <!-- Tab 1: Inventory (empty for now) -->
       <div id="tab1" class="tab-content active">
-        <h2>Text</h2>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>Super Long Text. Super Long Text.Super Long Text.Super Long Text.Super Long Text.Super Long Text.</p>
-        <p>End of Super Long Text</p>
+        <h2>Inventory</h2>
+        <ul>
+          <li>Flour — 2 kg</li>
+          <li>Sugar — 1 kg</li>
+          <li>Eggs — 12</li>
+          <li>Milk — 2 L</li>
+        </ul>
+        <p class="muted">(Static example inventory — you can wire this to storage later.)</p>
       </div>
-      <!-- Tab 2: LR -->
-      <div id="tab2" class="tab-content" style="position:relative;">
-        <h2>Text in the bottom right corner</h2>
-          <span style="position:fixed; right:calc(50vw - 320px + 20px); bottom:calc(50vh - 480px + 90px); font-size:1.5em; z-index:10;">Text Down Here</span>
-
+      <!-- Tab 2: Meal Planner (empty for now) -->
+      <div id="tab2" class="tab-content">
+        <h2>Meal Planner</h2>
+        <table>
+          <tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th></tr>
+          <tr><td>Mon</td><td>Oatmeal</td><td>Salad</td><td>Chicken</td></tr>
+          <tr><td>Tue</td><td>Eggs</td><td>Sandwich</td><td>Pasta</td></tr>
+          <tr><td>Wed</td><td>Yogurt</td><td>Soup</td><td>Stir-fry</td></tr>
+        </table>
+        <p class="muted">(Minimal static planner — add editing later.)</p>
       </div>
-      <!-- Tab 3: Colors -->
+      <!-- Tab 3: Shopping List (empty for now) -->
       <div id="tab3" class="tab-content">
-        <h2>Color</h2>
-        <div style="margin:40px 0 0 0;">
-          <div style="color: yellow; background: black; padding: 8px;">Yellow text on black</div>
-          <div style="color: purple; background: yellow; padding: 8px;">Purple text on yellow</div>
+        <h2>Shopping List</h2>
+        <ul>
+          <li>Tomatoes</li>
+          <li>Chicken Breast</li>
+          <li>Bread</li>
+        </ul>
+      </div>
+      <!-- Tab 4: Recipes (empty for now) -->
+      <div id="tab4" class="tab-content">
+        <h2>Recipes</h2>
+        <div class="recipe-card">
+          <h3>Simple Pancakes</h3>
+          <p>Ingredients: Flour, Eggs, Milk, Sugar, Baking Powder</p>
+          <p>Steps: Mix, cook on skillet, serve.</p>
         </div>
       </div>
-      <!-- Tab 4: Profile -->
-      <div id="tab4" class="tab-content" style="text-align:center;">
-        <h2>Profile</h2>
-        <div id="profileImg" style="width:100px; height:100px; border-radius:50%; margin-top:60px; cursor:pointer; font-size:80px; display:flex; align-items:center; justify-content:center; background:#fff; margin-left:auto; margin-right:auto;">😊</div>
-        <p><b>John Doe</b></p>
-        <div id="profileModal" class="hidden">
-          <div class="modal-content">
-            <p style="font-size:1.2em;">Hello, John Doe!</p>
-            <button onclick="closeProfileAlert()" style="margin-top:16px; padding:8px 20px; border-radius:8px; border:none; background:#e0bfae; color:#5a2c06; font-weight:bold; cursor:pointer;">Close</button>
-          </div>
-        </div>
-      </div>
-      <!-- Tab 5: Choices -->
+      <!-- Tab 5: Settings (empty for now) -->
       <div id="tab5" class="tab-content">
-        <h3>Choices</h3>
-        <p>
-          Pick a color:
-          <label><input type="radio" name="color" value="Green"> Green</label>
-          <label><input type="radio" name="color" value="Purple"> Purple</label>
-        </p>
-        <p>
-          Choose a team:
-          <select id="teamSelect">
-            <option value="Eagles">Eagles</option>
-            <option value="Ravens">Ravens</option>
-            <option value="Commanders">Commanders</option>
-          </select>
-        </p>
-        <button onclick="showChoice()">Show Choice</button>
-        <p id="choiceResult"></p>
+        <h2>Settings</h2>
       </div>
-      <!-- Tab 6: ToDo --> 
+      <!-- Tab 6: (kept empty for compatibility) --> 
       <div id="tab6" class="tab-content">
-        <div id="myDIV" class="header">
-          <h2>My To Do List</h2>
-          <input type="text" id="myInput" placeholder="Title...">
-          <span onclick="newElement()" class="addBtn">Add</span>
-        </div>
-        <ul id="myUL"></ul>
+        <!-- reserved for future use; intentionally empty -->
       </div>
      <!-- Icons from https://icons8.com/icons -->
     <div class="navbar">
-      <button id="tabBtn1" onclick="openTab('tab1')"><img src="icons/text.png"></img><br>Text</button>
-      <button id="tabBtn2" onclick="openTab('tab2')"><img src="icons/southeast.png"></img><br>LR</button>
-      <button id="tabBtn3" onclick="openTab('tab3')"><img src="icons/colors.png"></img><br>Colors</button>
-      <button id="tabBtn4" onclick="openTab('tab4')"><img src="icons/profile.png"></img><br>Profile</button>
-      <button id="tabBtn5" onclick="openTab('tab5')"><img src="icons/choose.png"></img><br>Choices</button>
-      <button id="tabBtn6" onclick="openTab('tab6')"><img src="icons/tasklist.png"></img><br>ToDo</button>
+      <button id="tabBtn1" onclick="openTab('tab1')"><img src="icons/inventory.png"></img><br>Inventory</button>
+      <button id="tabBtn2" onclick="openTab('tab2')"><img src="icons/meal.png"></img><br>Meal Planner</button>
+      <button id="tabBtn3" onclick="openTab('tab3')"><img src="icons/groceries.png"></img><br>Shopping List</button>
+      <button id="tabBtn4" onclick="openTab('tab4')"><img src="icons/recipes.png"></img><br>Recipes</button>
+      <button id="tabBtn5" onclick="openTab('tab5')"><img src="icons/settings.png"></img><br>Settings</button>
     </div>
   </div>
   <script src="script.js"></script>
