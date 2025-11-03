@@ -121,11 +121,18 @@
       <!-- Tab 3: Shopping List (empty for now) -->
       <div id="tab3" class="tab-content">
         <h2>Shopping List</h2>
-        <ul>
-          <li>Tomatoes</li>
-          <li>Chicken Breast</li>
-          <li>Bread</li>
-        </ul>
+        <label for="budgetInput">Set Your Budget: $</label>
+        <input type="number" id="budgetInput" value="30" onchange="updateBudget()" style="margin-bottom: 12px; font-size: 16px;">
+
+        <ul id="shoppingList">
+          <li><span>Tomatoes</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+          <li><span>Apples</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+          <li><span>Bread</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+          <li><span>Eggs</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+          <li><span>Milk</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+      </ul>
+
+        <div id="budgetStatus" style="margin-top: 12px; font-size: 16px;"></div>
       </div>
       <!-- Tab 4: Recipes (empty for now) -->
       <div id="tab4" class="tab-content">

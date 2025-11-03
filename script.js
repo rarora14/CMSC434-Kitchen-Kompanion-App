@@ -14,6 +14,10 @@ function openTab(tabId) {
   if (document.getElementById('tabBtn' + tabIdx)) {
     document.getElementById('tabBtn' + tabIdx).classList.add('active');
   }
+  // Recalculate budget if Shopping List tab is opened
+  if (tabId === 'tab3') {
+    updateBudget();
+  }
 }
 
 //https://www.w3schools.com/howto/howto_css_modals.asp
@@ -98,3 +102,60 @@ function newElement() {
     }
   }
 }
+
+
+
+
+const itemPrices = {
+  "Tomatoes": 3,
+  "Chicken Breast": 8,
+  "Bread": 4,
+  "Eggs": 5,
+  "Milk": 5
+};
+
+function removeItem(button) {
+  const item = button.parentElement;
+  item.remove();
+  updateBudget(); // Recalculate after deletion
+}
+
+function updateBudget() {
+  const budget = parseFloat(document.getElementById("budgetInput").value);
+  const items = document.querySelectorAll("#shoppingList li span");
+  let total = 0;
+  items.forEach(item => {
+    const name = item.textContent.trim();
+    total += itemPrices[name] || 0;
+  });
+
+  const status = document.getElementById("budgetStatus");
+  if (total > budget) {
+    status.innerHTML = `⚠️ Over budget by $${(total - budget).toFixed(2)}. Total: $${total.toFixed(2)}.`;
+    status.style.color = "red";
+  } else {
+    status.innerHTML = `✅ Within budget. Total: $${total.toFixed(2)}.`;
+    status.style.color = "green";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Open Inventory tab by default
+  openTab('tab1');
+
+  // Profile modal logic
+  const profileImg = document.getElementById('profileImg');
+  if (profileImg) {
+    profileImg.onclick = function() {
+      document.getElementById('profileModal').classList.remove('hidden');
+    };
+  }
+
+  // Budget input listener
+  const budgetInput = document.getElementById("budgetInput");
+  if (budgetInput) {
+    budgetInput.addEventListener("input", updateBudget);
+    updateBudget(); // Initial budget check
+  }
+});
+

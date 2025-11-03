@@ -92,3 +92,33 @@ body {
 .close:hover {
   background: #ddd;
 }
+
+#shoppingList li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the left */
+  gap: 12px; /* Add spacing between item name and button */
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 40px; /* Increased font size */
+}
+
+
+.delete-btn {
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  min-width: 40px;
+  text-align: center;
+}
+.delete-btn:hover {
+  background-color: #e63946;
+}
