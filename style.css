@@ -28,7 +28,7 @@ body {
 
 /* https://codehim.com/html5-css3/mobile-bottom-navigation-bar-html-css/ */
 .navbar {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -37,20 +37,6 @@ body {
   background-color: #fff8f0;
   border-top: 2px solid #e0bfae;
   z-index: 100;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
-}
-
-.device-frame .navbar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 200;
-  padding-bottom: env(safe-area-inset-bottom);
-  border-bottom-left-radius: 32px;
-  border-bottom-right-radius: 32px;
-  background-color: #fff8f0;
-  border-top: 2px solid #e0bfae;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
 }
 
@@ -182,7 +168,6 @@ label[for="budgetInput"] {
   text-align: center;
 }
 
-/* Inventory Panel Styles */
 .inventory-panel {
   max-width: 920px;
   margin: 12px auto 90px auto; 
@@ -194,7 +179,6 @@ label[for="budgetInput"] {
   box-sizing: border-box;
 }
 
-/* Header with title, add button and search/filter */
 .inventory-header {
   display: flex;
   gap: 12px;
@@ -216,7 +200,6 @@ label[for="budgetInput"] {
   align-items: center;
 }
 
-/* compact search field inside header */
 .inventory-search {
   display: flex;
   align-items: center;
@@ -234,7 +217,6 @@ label[for="budgetInput"] {
   background: transparent;
 }
 
-/* Inventory list layout */
 .inventory-list {
   list-style: none;
   padding: 0;
@@ -277,8 +259,6 @@ label[for="budgetInput"] {
   gap: 8px;
   align-items: center;
 }
-
-/* Quantity badge and category tag */
 .qty-badge {
   background: #fff4ef;
   color: #8a4a28;
@@ -329,7 +309,6 @@ label[for="budgetInput"] {
   box-shadow: 0 0 0 3px rgba(160,90,44,0.06);
 }
 
-/* Empty state */
 .inventory-empty {
   padding: 28px;
   text-align: center;
@@ -339,16 +318,12 @@ label[for="budgetInput"] {
   border-radius: 10px;
   border: 1px dashed rgba(160,90,44,0.08);
 }
-
-/* Compact variants for dense list (used when many items) */
 .inventory-item.compact {
   padding: 8px;
   grid-template-columns: 1fr auto;
   font-size: 16px;
 }
 .inventory-item.compact .inventory-name { font-size: 16px; }
-
-/* Accessibility: focus styles */
 .inventory-item:focus-within {
   box-shadow: 0 12px 36px rgba(15,15,15,0.06);
   outline: 3px solid rgba(160,90,44,0.08);

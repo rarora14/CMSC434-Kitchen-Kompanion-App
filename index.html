@@ -177,10 +177,6 @@
       font-size: 12px;
       cursor: pointer; /* make tag selectable */
     }
-    .category-tag.selected {
-      background-color: #00796b;
-      color: #fff;
-    }
     .inventory-right {
       display: flex;
       align-items: center;
@@ -237,7 +233,6 @@
            </div>
  
            <ul class="inventory-list" id="inventoryList" aria-live="polite">
-             <!-- minimal items: name + category(optional) + qty badge + controls -->
             <li class="inventory-item" data-id="1" data-qty="2" data-unit="kg" data-category="gluten">
               <div class="inventory-meta">
                 <div class="inventory-name">Flour</div>
@@ -340,172 +335,6 @@
       <button id="tabBtn5" onclick="openTab('tab5')"><img src="icons/settings.png"></img><br>Settings</button>
     </div>
   </div>
-  <script>
-    (function () {
-      let selectedCategory = ''; // active category filter, '' = none
-      function parseQtyText(text) {
-        const m = (text||'').trim().match(/^([\d.]+)\s*(.*)$/);
-        if (!m) return { qty: 0, unit: '' };
-        return { qty: parseFloat(m[1]) || 0, unit: (m[2] || '').trim() };
-      }
-      function updateBadge(li) {
-        const badge = li.querySelector('.qty-badge');
-        const qty = parseFloat(li.dataset.qty) || 0;
-        const unit = li.dataset.unit || '';
-        badge.textContent = qty + (unit ? (' ' + unit) : '');
-      }
-      function renderCategoryTag(li) {
-        const cat = (li.dataset.category || '').trim();
-        const sub = li.querySelector('.inventory-sub') || (function(){
-          const s = document.createElement('div'); s.className = 'inventory-sub';
-          li.querySelector('.inventory-meta').appendChild(s); return s;
-        })();
-        const existing = sub.querySelector('.category-tag');
-        if (existing) existing.remove();
-        if (cat) {
-          const tag = document.createElement('span');
-          tag.className = 'category-tag';
-          tag.textContent = cat;
-          tag.tabIndex = 0;
-          tag.setAttribute('role','button');
-          tag.onclick = function (e) { toggleCategoryFilter(cat); e.stopPropagation(); };
-          sub.insertBefore(tag, sub.firstChild);
-          if (selectedCategory === cat) tag.classList.add('selected');
-        }
-      }
-      function normalizeAll() {
-        document.querySelectorAll('.inventory-item').forEach(li => {
-          const badge = li.querySelector('.qty-badge');
-          if (badge) {
-            const p = parseQtyText(badge.textContent);
-            if (!li.dataset.qty) li.dataset.qty = p.qty || 0;
-            if (!li.dataset.unit) li.dataset.unit = p.unit || '';
-            updateBadge(li);
-          } else {
-            const controls = li.querySelector('.inventory-controls');
-            if (controls) {
-              const b = document.createElement('div');
-              b.className = 'qty-badge';
-              b.textContent = (li.dataset.qty || '0') + (li.dataset.unit ? ' ' + li.dataset.unit : '');
-              controls.insertBefore(b, controls.children[1] || null);
-            }
-          }
-          renderCategoryTag(li);
-        });
-      }
-      function updateInventoryEmpty() {
-        const list = document.getElementById('inventoryList');
-        const empty = document.getElementById('inventoryEmpty');
-        empty.style.display = (list.children.length === 0) ? '' : 'none';
-      }
-
-      window.incrementQty = window.incrementQty || function (btn) {
-        const li = btn.closest('.inventory-item');
-        if (!li) return;
-        li.dataset.qty = (parseFloat(li.dataset.qty || 0) + 1).toString();
-        updateBadge(li);
-      };
-      window.decrementQty = window.decrementQty || function (btn) {
-        const li = btn.closest('.inventory-item');
-        if (!li) return;
-        let qty = parseFloat(li.dataset.qty || 0) - 1;
-        if (qty < 0) qty = 0;
-        li.dataset.qty = qty.toString();
-        updateBadge(li);
-      };
-
-     // remove inventory item (used by remove button)
-     window.removeInventoryItem = window.removeInventoryItem || function (btn) {
-       const li = btn.closest('.inventory-item');
-       if (!li) return;
-       li.remove();
-       updateInventoryEmpty();
-     };
-
-      window.openAddInventory = window.openAddInventory || function () {
-        const name = prompt('Item name:');
-        if (!name) return;
-        const qtyRaw = prompt('Quantity (number, optional unit like "kg" after a space), e.g. "2 kg" or "3":','1');
-        let qty = 1, unit = '';
-        if (qtyRaw) {
-          const m = qtyRaw.trim().match(/^([\d.]+)\s*(.*)$/);
-          if (m) { qty = parseFloat(m[1]) || 1; unit = (m[2] || '').trim(); }
-        }
-       // choose category tag (dairy, gluten, other, none)
-       let cat = prompt('Category (dairy / gluten / other / none):','none');
-       if (!cat) cat = 'none';
-       cat = cat.trim().toLowerCase();
-       if (cat === 'other') {
-         const custom = prompt('Enter custom category:','');
-         if (custom) cat = custom.trim();
-         else cat = 'other';
-       }
-       if (cat === 'none') cat = '';
-        const list = document.getElementById('inventoryList');
-        const id = Date.now();
-        const li = document.createElement('li');
-        li.className = 'inventory-item';
-       if (unit) li.dataset.unit = unit;
-       if (cat) li.dataset.category = cat;
-        li.dataset.qty = qty;
-        li.dataset.id = id;
-        // include remove button; shopping cart button intentionally omitted
-        li.innerHTML = '<div class="inventory-meta"><div class="inventory-name"></div><div class="inventory-sub"></div></div>' +
-                      '<div class="inventory-right"><div class="inventory-controls">' +
-                      '<button class="btn" type="button" onclick="decrementQty(this)">−</button>' +
-                      '<div class="qty-badge" aria-live="polite"></div>' +
-                      '<button class="btn" type="button" onclick="incrementQty(this)">+</button>' +
-                      '<button class="btn" type="button" onclick="removeInventoryItem(this)">🗑️</button>' +
-                      '</div></div>';
-        li.querySelector('.inventory-name').textContent = name;
-        list.appendChild(li);
-        updateBadge(li);
-        renderCategoryTag(li);
-        updateInventoryEmpty();
-      };
-      window.removeItem = window.removeItem || function (btn) {
-        const li = btn.closest('li');
-        if (li) li.remove();
-      };
-
-     // category filter toggler
-     window.toggleCategoryFilter = window.toggleCategoryFilter || function (cat) {
-       selectedCategory = (selectedCategory === cat) ? '' : cat;
-       document.querySelectorAll('#inventoryList .inventory-item').forEach(li => {
-         const itemCat = (li.dataset.category || '').trim();
-         const matchesCat = !selectedCategory || (itemCat && itemCat === selectedCategory);
-         // also keep search filter in mind
-         const q = (document.getElementById('inventorySearch').value || '').toLowerCase();
-         const name = (li.querySelector('.inventory-name')||{}).textContent || '';
-         const matchesSearch = !q || name.toLowerCase().includes(q);
-         li.style.display = (matchesCat && matchesSearch) ? '' : 'none';
-         // update tag selected state
-         const tag = li.querySelector('.category-tag');
-         if (tag) {
-           if (selectedCategory && (li.dataset.category || '') === selectedCategory) tag.classList.add('selected');
-           else tag.classList.remove('selected');
-         }
-       });
-     };
-
-      function filterInventory() {
-        const q = (document.getElementById('inventorySearch').value || '').toLowerCase().trim();
-        document.querySelectorAll('#inventoryList .inventory-item').forEach(li => {
-          const name = (li.querySelector('.inventory-name')||{}).textContent || '';
-          const cat = (li.dataset.category || '').toLowerCase();
-          const matchesSearch = q === '' || name.toLowerCase().includes(q) || (cat && cat.includes(q));
-          const matchesCategory = !selectedCategory || (cat === selectedCategory);
-          li.style.display = (matchesSearch && matchesCategory) ? '' : 'none';
-        });
-      }
-
-      document.addEventListener('DOMContentLoaded', function () {
-        normalizeAll();
-        updateInventoryEmpty();
-        const s = document.getElementById('inventorySearch');
-        if (s) s.addEventListener('input', filterInventory);
-      });
-    })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
