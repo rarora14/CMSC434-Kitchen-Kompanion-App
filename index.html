@@ -219,7 +219,7 @@
   <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
   <div class="device-frame">
     <div class="device-content">
-      <!-- Tab 1: Inventory (replaced with presentable inventory panel) -->
+      <!-- Tab 1: Inventory  -->
       <div id="tab1" class="tab-content active">
         <div class="inventory-panel">
            <div class="inventory-header">
@@ -232,51 +232,7 @@
              </div>
            </div>
  
-           <ul class="inventory-list" id="inventoryList" aria-live="polite">
-            <li class="inventory-item" data-id="1" data-qty="2" data-unit="kg" data-category="gluten">
-              <div class="inventory-meta">
-                <div class="inventory-name">Flour</div>
-                <div class="inventory-sub"></div>
-              </div>
-              <div class="inventory-right">
-                <div class="inventory-controls">
-                  <button class="btn" type="button" onclick="decrementQty(this)">−</button>
-                  <div class="qty-badge" aria-live="polite">2 kg</div>
-                  <button class="btn" type="button" onclick="incrementQty(this)">+</button>
-                  <button class="btn" type="button" onclick="removeInventoryItem(this)" title="Remove item">🗑️</button>
-                </div>
-              </div>
-            </li>
-            <li class="inventory-item" data-id="2" data-qty="4" data-unit="lbs">
-              <div class="inventory-meta">
-                <div class="inventory-name">Chicken</div>
-                <div class="inventory-sub"></div>
-              </div>
-              <div class="inventory-right">
-                <div class="inventory-controls">
-                  <button class="btn" type="button" onclick="decrementQty(this)">−</button>
-                  <div class="qty-badge">4 lbs</div>
-                  <button class="btn" type="button" onclick="incrementQty(this)">+</button>
-                  <button class="btn" type="button" onclick="removeInventoryItem(this)" title="Remove item">🗑️</button>
-                </div>
-              </div>
-            </li>
-            <li class="inventory-item" data-id="3" data-qty="12" data-category="dairy">
-              <div class="inventory-meta">
-                <div class="inventory-name">Eggs</div>
-                <div class="inventory-sub"></div>
-              </div>
-              <div class="inventory-right">
-                <div class="inventory-controls">
-                  <button class="btn" type="button" onclick="decrementQty(this)">−</button>
-                  <div class="qty-badge">12</div>
-                  <button class="btn" type="button" onclick="incrementQty(this)">+</button>
-                  <button class="btn" type="button" onclick="removeInventoryItem(this)" title="Remove item">🗑️</button>
-                </div>
-              </div>
-            </li>
-           </ul>
- 
+           <ul class="inventory-list" id="inventoryList" aria-live="polite"></ul>
            <div id="inventoryEmpty" class="inventory-empty" style="display:none;">
              No items. Use “Add” to create one.
            </div>

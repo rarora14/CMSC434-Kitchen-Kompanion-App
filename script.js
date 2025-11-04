@@ -1,4 +1,3 @@
-
 // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role
 function openTab(tabId) {
   //Remove active from all tabs and buttons
@@ -217,20 +216,17 @@ function normalizeAll() {
     renderCategoryTag(li);
   });
 }
-
-function updateInventoryEmpty() {
+function updateInventoryIfEmpty() {
   const list = document.getElementById('inventoryList');
   const empty = document.getElementById('inventoryEmpty');
   empty.style.display = list.children.length === 0 ? '' : 'none';
 }
-
 window.incrementQty = window.incrementQty || function (btn) {
   const li = btn.closest('.inventory-item');
   if (!li) return;
   li.dataset.qty = (parseFloat(li.dataset.qty || 0) + 1).toString();
   updateBadge(li);
 };
-
 window.decrementQty = window.decrementQty || function (btn) {
   const li = btn.closest('.inventory-item');
   if (!li) return;
@@ -244,7 +240,7 @@ window.removeInventoryItem = window.removeInventoryItem || function (btn) {
   const li = btn.closest('.inventory-item');
   if (!li) return;
   li.remove();
-  updateInventoryEmpty();
+  updateInventoryIfEmpty();
 };
 
 window.openAddInventory = window.openAddInventory || function () {
@@ -297,7 +293,7 @@ window.openAddInventory = window.openAddInventory || function () {
   list.appendChild(li);
   updateBadge(li);
   renderCategoryTag(li);
-  updateInventoryEmpty();
+  updateInventoryIfEmpty();
 };
 
 window.removeItem = window.removeItem || function (btn) {
@@ -318,10 +314,47 @@ function filterInventory() {
     li.style.display = matches ? '' : 'none';
   });
 }
+function createInventoryElement({ id, name, qty = 0, unit = '', category = '' }) {
+  const li = document.createElement('li');
+  li.className = 'inventory-item';
+  li.dataset.id = id || Date.now();
+  if (qty !== undefined) li.dataset.qty = qty;
+  if (unit) li.dataset.unit = unit;
+  if (category) li.dataset.category = category;
 
+  li.innerHTML =
+    '<div class="inventory-meta"><div class="inventory-name"></div><div class="inventory-sub"></div></div>' +
+    '<div class="inventory-right"><div class="inventory-controls">' +
+    '<button class="btn" type="button" onclick="decrementQty(this)">−</button>' +
+    '<div class="qty-badge" aria-live="polite"></div>' +
+    '<button class="btn" type="button" onclick="incrementQty(this)">+</button>' +
+    '<button class="btn" type="button" onclick="removeInventoryItem(this)">🗑️</button>' +
+    '</div></div>';
+
+  li.querySelector('.inventory-name').textContent = name;
+  return li;
+}
+
+function createDefaultInventory() {
+  const list = document.getElementById('inventoryList');
+  if (!list) return;
+  if (list.children.length > 0) return;
+
+  const defaults = [
+    { id: 1, name: 'Flour', qty: 2, unit: 'kg', category: 'gluten' },
+    { id: 2, name: 'Chicken', qty: 4, unit: 'lbs', category: 'meat' },
+    { id: 3, name: 'Eggs', qty: 12, category: 'dairy' }
+  ];
+
+  defaults.forEach(item => {
+    const li = createInventoryElement(item);
+    list.appendChild(li);
+  });
+}
 document.addEventListener('DOMContentLoaded', function () {
+  createDefaultInventory();
   normalizeAll();
-  updateInventoryEmpty();
+  updateInventoryIfEmpty();
   const s = document.getElementById('inventorySearch');
   if (s) s.addEventListener('input', filterInventory);
 });
