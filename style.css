@@ -44,16 +44,26 @@ body {
   flex: 1;
   background: none;
   border: none;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
-  padding: 8px 0 0 0;
+  padding: 8px 0 6px 0;
   color: #a05a2c;
   transition: background 0.2s;
   cursor: pointer;
 }
 .navbar button:hover, .navbar button:focus {
   background: #ffe5d0;
+  outline: 3px solid rgba(160,90,44,0.12);
+  outline-offset: -2px;
 }
+
+/* active state for the current tab */
+.navbar button.active {
+  background: linear-gradient(180deg, rgba(255,229,208,0.6), rgba(255,229,208,0.3));
+  color: #7a3f1a;
+  font-weight: 600;
+}
+
 .navbar img {
   width: 28px;
   height: 28px;
@@ -62,12 +72,12 @@ body {
 
 /*ToDo Add Button */
 .addBtn {
-  padding: 4px 12px;
+  padding: 6px 14px;
   margin-left: 6px;
   background: #eee;
   color: #333;
   border: 1px solid #bbb;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 15px;
 }
@@ -82,12 +92,13 @@ body {
   color: #333;
   border: 1px solid #bbb;
   border-radius: 4px;
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   display: inline-block;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
+  line-height: 28px;
 }
 .close:hover {
   background: #ddd;
@@ -112,18 +123,19 @@ body {
   background-color: #ff6b6b;
   border: none;
   color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 20px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 18px;
   cursor: pointer;
   transition: background 0.2s ease;
-  min-width: 48px;
+  min-width: 56px;
   text-align: center;
 }
-.delete-btn:hover {
+.delete-btn:hover, .delete-btn:focus {
   background-color: #e63946;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230,57,70,0.12);
 }
-
 
 /* Shopping List tab title */
 #tab3 h2 {
@@ -156,3 +168,137 @@ label[for="budgetInput"] {
   text-align: center;
 }
 
+/* Inventory Style */
+.inventory-panel {
+  max-width: 920px;
+  margin: 12px auto 90px;
+  padding: 18px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0bfae;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  box-sizing: border-box;
+}
+
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.inventory-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #5a351e;
+}
+
+.inventory-actions,
+.inventory-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.inventory-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e6d6ca;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.inventory-search input[type="search"] {
+  border: none;
+  outline: none;
+  width: 180px;
+  background: transparent;
+}
+
+.inventory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.inventory-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #e0bfae33;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.inventory-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+}
+
+.inventory-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.inventory-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4a2b18;
+}
+.inventory-sub {
+  font-size: 13px;
+  color: #7a5a48;
+  display: flex;
+  gap: 6px;
+}
+
+.qty-badge,
+.category-tag {
+  background: #fff4ef;
+  color: #8a4a28;
+  border: 1px solid rgba(160,90,44,0.12);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.inventory-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.inventory-last-used {
+  font-size: 12px;
+  color: #9b7a6b;
+}
+
+.inventory-controls .btn {
+  border: 1px solid rgba(160,90,44,0.12);
+  background: #fff;
+  color: #7a3f1a;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.inventory-controls .btn:hover {
+  background: #ffeede;
+}
+
+.inventory-empty {
+  padding: 24px;
+  text-align: center;
+  color: #8b6a58;
+  font-size: 15px;
+  border: 1px dashed rgba(160,90,44,0.12);
+  border-radius: 10px;
+  background: #fffaf8;
+}
