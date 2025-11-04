@@ -92,21 +92,201 @@
       text-decoration: line-through;
       color: #aaa;
     }
+    .inventory-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .inventory-title {
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    .inventory-title img {
+      margin-right: 8px;
+    }
+    .inventory-actions {
+      display: flex;
+      align-items: center;
+    }
+    .inventory-search {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 16px;
+      padding: 8px 12px;
+      margin-right: 8px;
+      flex: 1;
+    }
+    .inventory-search input {
+      border: none;
+      outline: none;
+      margin-left: 8px;
+      flex: 1;
+    }
+    .addBtn {
+      background-color: #6db65b;
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 10px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .addBtn:hover {
+      background-color: #5cae50;
+    }
+    .inventory-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .inventory-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 12px;
+    }
+    .inventory-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .inventory-name {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .inventory-sub {
+      font-size: 14px;
+      color: #666;
+      display: flex;
+      align-items: center;
+    }
+    .category-tag {
+      background-color: #e0f7fa;
+      color: #00796b;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-right: 8px;
+      font-size: 12px;
+      cursor: pointer; /* make tag selectable */
+    }
+    .category-tag.selected {
+      background-color: #00796b;
+      color: #fff;
+    }
+    .inventory-right {
+      display: flex;
+      align-items: center;
+    }
+    .inventory-last-used {
+      font-size: 12px;
+      color: #999;
+      margin-right: 12px;
+    }
+    .inventory-controls {
+      display: flex;
+      align-items: center;
+    }
+    .btn {
+      background: #f0f0f0;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-right: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #e0e0e0;
+    }
+    .qty-badge {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .inventory-empty {
+      text-align: center;
+      color: #999;
+      font-style: italic;
+    }
   </style>
   <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
   <div class="device-frame">
     <div class="device-content">
-      <!-- Tab 1: Inventory (empty for now) -->
+      <!-- Tab 1: Inventory (replaced with presentable inventory panel) -->
       <div id="tab1" class="tab-content active">
-        <h2>Inventory</h2>
-        <ul>
-          <li>Flour — 2 kg</li>
-          <li>Sugar — 1 kg</li>
-          <li>Eggs — 12</li>
-          <li>Milk — 2 L</li>
-        </ul>
-        <p class="muted">(Static example inventory)</p>
-      </div>
+        <div class="inventory-panel">
+           <div class="inventory-header">
+             <div class="inventory-title">Inventory</div>
+             <div class="inventory-actions">
+               <div class="inventory-search" role="search" aria-label="Search inventory">
+                 <input type="search" id="inventorySearch" placeholder="Search food or category">
+               </div>
+               <button class="addBtn" type="button" onclick="openAddInventory()">+ Add</button>
+             </div>
+           </div>
+ 
+           <ul class="inventory-list" id="inventoryList" aria-live="polite">
+             <!-- minimal items: name + category(optional) + qty badge + controls -->
+            <li class="inventory-item" data-id="1" data-qty="2" data-unit="kg" data-category="gluten">
+              <div class="inventory-meta">
+                <div class="inventory-name">Flour</div>
+                <div class="inventory-sub"></div>
+              </div>
+              <div class="inventory-right">
+                <div class="inventory-controls">
+                  <button class="btn" type="button" onclick="decrementQty(this)">−</button>
+                  <div class="qty-badge" aria-live="polite">2 kg</div>
+                  <button class="btn" type="button" onclick="incrementQty(this)">+</button>
+                  <button class="btn" type="button" onclick="removeInventoryItem(this)" title="Remove item">🗑️</button>
+                </div>
+              </div>
+            </li>
+            <li class="inventory-item" data-id="2" data-qty="4" data-unit="lbs">
+              <div class="inventory-meta">
+                <div class="inventory-name">Chicken</div>
+                <div class="inventory-sub"></div>
+              </div>
+              <div class="inventory-right">
+                <div class="inventory-controls">
+                  <button class="btn" type="button" onclick="decrementQty(this)">−</button>
+                  <div class="qty-badge">4 lbs</div>
+                  <button class="btn" type="button" onclick="incrementQty(this)">+</button>
+                  <button class="btn" type="button" onclick="removeInventoryItem(this)" title="Remove item">🗑️</button>
+                </div>
+              </div>
+            </li>
+            <li class="inventory-item" data-id="3" data-qty="12" data-category="dairy">
+              <div class="inventory-meta">
+                <div class="inventory-name">Eggs</div>
+                <div class="inventory-sub"></div>
+              </div>
+              <div class="inventory-right">
+                <div class="inventory-controls">
+                  <button class="btn" type="button" onclick="decrementQty(this)">−</button>
+                  <div class="qty-badge">12</div>
+                  <button class="btn" type="button" onclick="incrementQty(this)">+</button>
+                  <button class="btn" type="button" onclick="removeInventoryItem(this)" title="Remove item">🗑️</button>
+                </div>
+              </div>
+            </li>
+           </ul>
+ 
+           <div id="inventoryEmpty" class="inventory-empty" style="display:none;">
+             No items. Use “Add” to create one.
+           </div>
+         </div>
+       </div>
       <!-- Tab 2: Meal Planner (empty for now) -->
       <div id="tab2" class="tab-content">
         <h2>Meal Planner</h2>
@@ -160,6 +340,172 @@
       <button id="tabBtn5" onclick="openTab('tab5')"><img src="icons/settings.png"></img><br>Settings</button>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script>
+    (function () {
+      let selectedCategory = ''; // active category filter, '' = none
+      function parseQtyText(text) {
+        const m = (text||'').trim().match(/^([\d.]+)\s*(.*)$/);
+        if (!m) return { qty: 0, unit: '' };
+        return { qty: parseFloat(m[1]) || 0, unit: (m[2] || '').trim() };
+      }
+      function updateBadge(li) {
+        const badge = li.querySelector('.qty-badge');
+        const qty = parseFloat(li.dataset.qty) || 0;
+        const unit = li.dataset.unit || '';
+        badge.textContent = qty + (unit ? (' ' + unit) : '');
+      }
+      function renderCategoryTag(li) {
+        const cat = (li.dataset.category || '').trim();
+        const sub = li.querySelector('.inventory-sub') || (function(){
+          const s = document.createElement('div'); s.className = 'inventory-sub';
+          li.querySelector('.inventory-meta').appendChild(s); return s;
+        })();
+        const existing = sub.querySelector('.category-tag');
+        if (existing) existing.remove();
+        if (cat) {
+          const tag = document.createElement('span');
+          tag.className = 'category-tag';
+          tag.textContent = cat;
+          tag.tabIndex = 0;
+          tag.setAttribute('role','button');
+          tag.onclick = function (e) { toggleCategoryFilter(cat); e.stopPropagation(); };
+          sub.insertBefore(tag, sub.firstChild);
+          if (selectedCategory === cat) tag.classList.add('selected');
+        }
+      }
+      function normalizeAll() {
+        document.querySelectorAll('.inventory-item').forEach(li => {
+          const badge = li.querySelector('.qty-badge');
+          if (badge) {
+            const p = parseQtyText(badge.textContent);
+            if (!li.dataset.qty) li.dataset.qty = p.qty || 0;
+            if (!li.dataset.unit) li.dataset.unit = p.unit || '';
+            updateBadge(li);
+          } else {
+            const controls = li.querySelector('.inventory-controls');
+            if (controls) {
+              const b = document.createElement('div');
+              b.className = 'qty-badge';
+              b.textContent = (li.dataset.qty || '0') + (li.dataset.unit ? ' ' + li.dataset.unit : '');
+              controls.insertBefore(b, controls.children[1] || null);
+            }
+          }
+          renderCategoryTag(li);
+        });
+      }
+      function updateInventoryEmpty() {
+        const list = document.getElementById('inventoryList');
+        const empty = document.getElementById('inventoryEmpty');
+        empty.style.display = (list.children.length === 0) ? '' : 'none';
+      }
+
+      window.incrementQty = window.incrementQty || function (btn) {
+        const li = btn.closest('.inventory-item');
+        if (!li) return;
+        li.dataset.qty = (parseFloat(li.dataset.qty || 0) + 1).toString();
+        updateBadge(li);
+      };
+      window.decrementQty = window.decrementQty || function (btn) {
+        const li = btn.closest('.inventory-item');
+        if (!li) return;
+        let qty = parseFloat(li.dataset.qty || 0) - 1;
+        if (qty < 0) qty = 0;
+        li.dataset.qty = qty.toString();
+        updateBadge(li);
+      };
+
+     // remove inventory item (used by remove button)
+     window.removeInventoryItem = window.removeInventoryItem || function (btn) {
+       const li = btn.closest('.inventory-item');
+       if (!li) return;
+       li.remove();
+       updateInventoryEmpty();
+     };
+
+      window.openAddInventory = window.openAddInventory || function () {
+        const name = prompt('Item name:');
+        if (!name) return;
+        const qtyRaw = prompt('Quantity (number, optional unit like "kg" after a space), e.g. "2 kg" or "3":','1');
+        let qty = 1, unit = '';
+        if (qtyRaw) {
+          const m = qtyRaw.trim().match(/^([\d.]+)\s*(.*)$/);
+          if (m) { qty = parseFloat(m[1]) || 1; unit = (m[2] || '').trim(); }
+        }
+       // choose category tag (dairy, gluten, other, none)
+       let cat = prompt('Category (dairy / gluten / other / none):','none');
+       if (!cat) cat = 'none';
+       cat = cat.trim().toLowerCase();
+       if (cat === 'other') {
+         const custom = prompt('Enter custom category:','');
+         if (custom) cat = custom.trim();
+         else cat = 'other';
+       }
+       if (cat === 'none') cat = '';
+        const list = document.getElementById('inventoryList');
+        const id = Date.now();
+        const li = document.createElement('li');
+        li.className = 'inventory-item';
+       if (unit) li.dataset.unit = unit;
+       if (cat) li.dataset.category = cat;
+        li.dataset.qty = qty;
+        li.dataset.id = id;
+        // include remove button; shopping cart button intentionally omitted
+        li.innerHTML = '<div class="inventory-meta"><div class="inventory-name"></div><div class="inventory-sub"></div></div>' +
+                      '<div class="inventory-right"><div class="inventory-controls">' +
+                      '<button class="btn" type="button" onclick="decrementQty(this)">−</button>' +
+                      '<div class="qty-badge" aria-live="polite"></div>' +
+                      '<button class="btn" type="button" onclick="incrementQty(this)">+</button>' +
+                      '<button class="btn" type="button" onclick="removeInventoryItem(this)">🗑️</button>' +
+                      '</div></div>';
+        li.querySelector('.inventory-name').textContent = name;
+        list.appendChild(li);
+        updateBadge(li);
+        renderCategoryTag(li);
+        updateInventoryEmpty();
+      };
+      window.removeItem = window.removeItem || function (btn) {
+        const li = btn.closest('li');
+        if (li) li.remove();
+      };
+
+     // category filter toggler
+     window.toggleCategoryFilter = window.toggleCategoryFilter || function (cat) {
+       selectedCategory = (selectedCategory === cat) ? '' : cat;
+       document.querySelectorAll('#inventoryList .inventory-item').forEach(li => {
+         const itemCat = (li.dataset.category || '').trim();
+         const matchesCat = !selectedCategory || (itemCat && itemCat === selectedCategory);
+         // also keep search filter in mind
+         const q = (document.getElementById('inventorySearch').value || '').toLowerCase();
+         const name = (li.querySelector('.inventory-name')||{}).textContent || '';
+         const matchesSearch = !q || name.toLowerCase().includes(q);
+         li.style.display = (matchesCat && matchesSearch) ? '' : 'none';
+         // update tag selected state
+         const tag = li.querySelector('.category-tag');
+         if (tag) {
+           if (selectedCategory && (li.dataset.category || '') === selectedCategory) tag.classList.add('selected');
+           else tag.classList.remove('selected');
+         }
+       });
+     };
+
+      function filterInventory() {
+        const q = (document.getElementById('inventorySearch').value || '').toLowerCase().trim();
+        document.querySelectorAll('#inventoryList .inventory-item').forEach(li => {
+          const name = (li.querySelector('.inventory-name')||{}).textContent || '';
+          const cat = (li.dataset.category || '').toLowerCase();
+          const matchesSearch = q === '' || name.toLowerCase().includes(q) || (cat && cat.includes(q));
+          const matchesCategory = !selectedCategory || (cat === selectedCategory);
+          li.style.display = (matchesSearch && matchesCategory) ? '' : 'none';
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        normalizeAll();
+        updateInventoryEmpty();
+        const s = document.getElementById('inventorySearch');
+        if (s) s.addEventListener('input', filterInventory);
+      });
+    })();
+  </script>
 </body>
 </html>

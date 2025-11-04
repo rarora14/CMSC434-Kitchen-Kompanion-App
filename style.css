@@ -28,7 +28,7 @@ body {
 
 /* https://codehim.com/html5-css3/mobile-bottom-navigation-bar-html-css/ */
 .navbar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -40,20 +40,44 @@ body {
   box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
 }
 
+.device-frame .navbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  padding-bottom: env(safe-area-inset-bottom);
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  background-color: #fff8f0;
+  border-top: 2px solid #e0bfae;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}
+
 .navbar button {
   flex: 1;
   background: none;
   border: none;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
-  padding: 8px 0 0 0;
+  padding: 8px 0 6px 0;
   color: #a05a2c;
   transition: background 0.2s;
   cursor: pointer;
 }
 .navbar button:hover, .navbar button:focus {
   background: #ffe5d0;
+  outline: 3px solid rgba(160,90,44,0.12);
+  outline-offset: -2px;
 }
+
+/* active state for the current tab */
+.navbar button.active {
+  background: linear-gradient(180deg, rgba(255,229,208,0.6), rgba(255,229,208,0.3));
+  color: #7a3f1a;
+  font-weight: 600;
+}
+
 .navbar img {
   width: 28px;
   height: 28px;
@@ -62,12 +86,12 @@ body {
 
 /*ToDo Add Button */
 .addBtn {
-  padding: 4px 12px;
+  padding: 6px 14px;
   margin-left: 6px;
   background: #eee;
   color: #333;
   border: 1px solid #bbb;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 15px;
 }
@@ -82,12 +106,13 @@ body {
   color: #333;
   border: 1px solid #bbb;
   border-radius: 4px;
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   display: inline-block;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
+  line-height: 28px;
 }
 .close:hover {
   background: #ddd;
@@ -112,18 +137,19 @@ body {
   background-color: #ff6b6b;
   border: none;
   color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 20px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 18px;
   cursor: pointer;
   transition: background 0.2s ease;
-  min-width: 48px;
+  min-width: 56px;
   text-align: center;
 }
-.delete-btn:hover {
+.delete-btn:hover, .delete-btn:focus {
   background-color: #e63946;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230,57,70,0.12);
 }
-
 
 /* Shopping List tab title */
 #tab3 h2 {
@@ -155,4 +181,201 @@ label[for="budgetInput"] {
   margin-top: 20px;
   text-align: center;
 }
+
+/* Inventory Panel Styles */
+.inventory-panel {
+  max-width: 920px;
+  margin: 12px auto 90px auto; 
+  padding: 18px;
+  background: linear-gradient(180deg,#fff,#fff8f7);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(15,15,15,0.04);
+  border: 1px solid rgba(224,191,174,0.6);
+  box-sizing: border-box;
+}
+
+/* Header with title, add button and search/filter */
+.inventory-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.inventory-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #5a351e;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.inventory-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* compact search field inside header */
+.inventory-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e6d6ca;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+.inventory-search input[type="search"] {
+  border: none;
+  outline: none;
+  width: 180px;
+  font-size: 15px;
+  background: transparent;
+}
+
+/* Inventory list layout */
+.inventory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.inventory-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(224,191,174,0.18);
+  box-shadow: 0 2px 8px rgba(10,10,10,0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.inventory-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(20,20,20,0.06);
+}
+
+/* Left column: name, meta */
+.inventory-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.inventory-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4a2b18;
+}
+.inventory-sub {
+  font-size: 13px;
+  color: #7a5a48;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Quantity badge and category tag */
+.qty-badge {
+  background: #fff4ef;
+  color: #8a4a28;
+  border: 1px solid rgba(160,90,44,0.12);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  min-width: 44px;
+  text-align: center;
+}
+.category-tag {
+  background: #f6efe9;
+  color: #a05a2c;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 13px;
+  border: 1px solid rgba(160,90,44,0.06);
+}
+
+/* Right column: controls and last-used */
+.inventory-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.inventory-last-used {
+  font-size: 12px;
+  color: #9b7a6b;
+}
+.inventory-controls {
+  display: flex;
+  gap: 8px;
+}
+.inventory-controls .btn {
+  border: 1px solid rgba(160,90,44,0.12);
+  background: #fff;
+  color: #7a3f1a;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.inventory-controls .btn:hover, .inventory-controls .btn:focus {
+  background: #ffeede;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(160,90,44,0.06);
+}
+
+/* Empty state */
+.inventory-empty {
+  padding: 28px;
+  text-align: center;
+  color: #8b6a58;
+  font-size: 16px;
+  background: linear-gradient(180deg,#fff,#fffaf8);
+  border-radius: 10px;
+  border: 1px dashed rgba(160,90,44,0.08);
+}
+
+/* Compact variants for dense list (used when many items) */
+.inventory-item.compact {
+  padding: 8px;
+  grid-template-columns: 1fr auto;
+  font-size: 16px;
+}
+.inventory-item.compact .inventory-name { font-size: 16px; }
+
+/* Accessibility: focus styles */
+.inventory-item:focus-within {
+  box-shadow: 0 12px 36px rgba(15,15,15,0.06);
+  outline: 3px solid rgba(160,90,44,0.08);
+  outline-offset: 2px;
+}
+
+@media print {
+  .navbar, .inventory-controls, .inventory-search, .addBtn { display: none !important; }
+  .inventory-panel { box-shadow: none; border: none; }
+  .inventory-item { page-break-inside: avoid; }
+}
+
+@media (max-width: 720px) {
+  .inventory-panel { margin: 10px; padding: 12px; }
+  .inventory-title { font-size: 22px; }
+  .inventory-search input[type="search"] { width: 110px; }
+  .inventory-right { align-items: flex-start; }
+  .inventory-controls { gap: 6px; }
+  .inventory-item { grid-template-columns: 1fr auto; }
+}
+
+@media (max-width: 420px) {
+  .inventory-name { font-size: 16px; }
+  .inventory-sub { font-size: 12px; gap: 6px; }
+  .qty-badge { padding: 3px 7px; min-width: 40px; font-size: 13px; }
+  .inventory-actions { gap: 6px; }
+}
+
+
 
