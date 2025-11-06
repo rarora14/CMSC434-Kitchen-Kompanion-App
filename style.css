@@ -44,7 +44,7 @@ body {
   flex: 1;
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 18px !important;
   text-align: center;
   padding: 8px 0 6px 0;
   color: #a05a2c;
@@ -65,8 +65,8 @@ body {
 }
 
 .navbar img {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   margin-bottom: 2px;
 }
 
