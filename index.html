@@ -258,14 +258,16 @@
       <h2>Shopping List</h2>
 
       <div class="inventory-header">
-      <div class="inventory-title">Shopping List</div>
+      <div class="inventory-title">Add Items</div>
       <div class="inventory-actions">
       <button class="addBtn" type="button" onclick="openAddShoppingItem()">+ Add</button>
     </div>
   </div>
 
+    <div class="budget-row">
   <label for="budgetInput">Set Your Budget: $</label>
-  <input type="number" id="budgetInput" value="30" onchange="updateBudget()" style="margin-bottom: 12px; font-size: 16px;">
+  <input type="number" id="budgetInput" value="30" onchange="updateBudget()">
+  </div>
 
   <ul id="shoppingList">
     <li><span>Tomatoes - $3.00</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
