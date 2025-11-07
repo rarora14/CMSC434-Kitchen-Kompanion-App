@@ -215,6 +215,9 @@
       color: #999;
       font-style: italic;
     }
+
+    
+
   </style>
   <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
   <div class="device-frame">
@@ -265,15 +268,114 @@
 
         <div id="budgetStatus" style="margin-top: 12px; font-size: 16px;"></div>
       </div>
+
+
       <!-- Tab 4: Recipes (empty for now) -->
-      <div id="tab4" class="tab-content">
-        <h2>Recipes</h2>
-        <div class="recipe-card">
-          <h3>Simple Pancakes</h3>
-          <p>Ingredients: Flour, Eggs, Milk, Sugar, Baking Powder</p>
-          <p>Steps: Mix, cook on skillet, serve.</p>
+
+ <div id="tab4" class="tab-content">
+  <h2>Recipes</h2>
+
+  <!-- outer white container -->
+  <div class="recipe-card">
+    <p class="recipe-title">Smart Recipe Suggestion</p>
+
+    <!-- small decorative square (optional) -->
+    <div class="small-square"></div>
+
+    <!-- Search bar and button -->
+    <input type="text" class="mini-search" placeholder="Search Recipe" />
+    <button class="search-btn">Search</button>
+    <br><br>
+
+    <!-- recipe list inside card -->
+    <div class="recipe-grid">
+      <div class="recipe-item">
+        <div class="recipe-details">
+          <span class="recipe-name">Veggie Pasta</span>
+          <p class="recipe-status available">All ingredients available</p>
         </div>
+        <button class="view-btn">View Recipe</button>
       </div>
+
+      <div class="recipe-item">
+        <div class="recipe-details">
+          <span class="recipe-name">Fried Rice</span>
+          <p class="recipe-status missing">Missing 2 ingredients</p>
+        </div>
+        <button class="view-btn">View Recipe</button>
+      </div>
+    </div>
+  </div>
+  
+<div id="expiringCard" class="expiring-card" aria-live="polite">
+  <div class="expiring-header">
+    <span class="expiring-title">Expiring Soon</span>
+  </div>
+
+  <!-- big white inner rectangle -->
+  <div class="expiring-subcontainer">
+    
+      <div class="expiring-ing-name">Eggs</div>
+      <div class="expiring-ing-date">Expires in 2 days (2025-11-08)</div>
+    
+  </div>
+
+   <div class="expiring-subcontainer">
+    
+      <div class="expiring-ing-name">Bread</div>
+      <div class="expiring-ing-date">Expires in 5 days (2025-11-011)</div>
+    
+  </div>
+</div>
+
+<div class="mealplan-card">
+  <p class="mealplan-title">Weekly Meal Plan Snapshot</p>
+
+  <div class="mealplan-row">
+    <span class="mealplan-day">Mon</span>
+    <span class="mealplan-meal">Veggie Pasta</span>
+    <div class="mealplan-actions">
+      <button class="mealplan-btn" type="button">Edit ✏️</button>
+      <button class="remove-day-btn" type="button">🗑️</button>
+    </div>
+  </div>
+
+  <div class="mealplan-row">
+    <span class="mealplan-day">Tue</span>
+    <span class="mealplan-meal">Fried Rice</span>
+    <div class="mealplan-actions">
+      <button class="mealplan-btn add" type="button">Add Recipe ➕</button>
+      <button class="remove-day-btn" type="button">🗑️</button>
+    </div>
+  </div>
+
+     <div class="mealplan-footer">
+    <button class="add-day-btn" type="button">+ Add Day</button>
+  </div>
+
+</div>
+
+
+
+
+</div>
+
+
+
+<!-- Recipe Modal (hidden by default) -->
+<div id="recipeModal" class="overlay hidden" aria-hidden="true">
+  <div class="modal-box">
+    <button type="button" class="modal-close" aria-label="Close">✕</button>
+    <h3 id="modalTitle">Recipe Details</h3>
+    <p id="modalContent">This is a placeholder modal for your recipe.</p>
+  </div>
+</div>
+
+
+
+
+
+
       <!-- Tab 5: Settings (empty for now) -->
       <div id="tab5" class="tab-content">
         <h2>Settings</h2>
@@ -290,7 +392,19 @@
       <button id="tabBtn4" onclick="openTab('tab4')"><img src="icons/recipes.png"></img><br>Recipes</button>
       <button id="tabBtn5" onclick="openTab('tab5')"><img src="icons/settings.png"></img><br>Settings</button>
     </div>
+
+      
+    
   </div>
+
+  
+
+ 
   <script src="script.js"></script>
+
+
+
+
+
 </body>
 </html>
