@@ -243,6 +243,17 @@
        </div>
       <!-- Tab 2: Meal Planner -->
       <div id="tab2" class="tab-content">
+        <h2>Meal Planner</h2>
+        <table>
+          <tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th></tr>
+          <tr><td>Mon</td><td>Oatmeal</td><td>Salad</td><td>Chicken</td></tr>
+          <tr><td>Tue</td><td>Eggs</td><td>Sandwich</td><td>Pasta</td></tr>
+          <tr><td>Wed</td><td>Yogurt</td><td>Soup</td><td>Stir-fry</td></tr>
+        </table>
+        <p class="muted">(Minimal static planner — add editing later.)</p>
+      </div>
+     
+      <!-- Tab 3: Shopping List -->
         <h2 class="planner-title">Meal Planner</h2>
 
         <div class="planner-panel">
@@ -417,21 +428,50 @@
       </div> <!-- end of tab2 -->
       <!-- Tab 3: Shopping List (empty for now) -->
       <div id="tab3" class="tab-content">
-        <h2>Shopping List</h2>
-        <label for="budgetInput">Set Your Budget: $</label>
-        <input type="number" id="budgetInput" value="30" onchange="updateBudget()" style="margin-bottom: 12px; font-size: 16px;">
+      <h2>Shopping List</h2>
 
-        <ul id="shoppingList">
-          <li><span>Tomatoes</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
-          <li><span>Apples</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
-          <li><span>Bread</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
-          <li><span>Eggs</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
-          <li><span>Milk</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
-      </ul>
+      <div class="inventory-header">
+      <div class="inventory-title">Add Items</div>
+      <div class="inventory-actions">
+      <button class="addBtn" type="button" onclick="openAddShoppingItem()">+ Add</button>
+    </div>
+  </div>
 
-        <div id="budgetStatus" style="margin-top: 12px; font-size: 16px;"></div>
-      </div>
+    <div class="budget-row">
+  <label for="budgetInput">Set Your Budget: $</label>
+  <input type="number" id="budgetInput" value="30" onchange="updateBudget()">
+  </div>
 
+  <ul id="shoppingList">
+    <li><span>Tomatoes - $3.00</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+    <li><span>Apples - $2.00</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+    <li><span>Bread - $2.00</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+    <li><span>Eggs - $4.00</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+    <li><span>Milk - $3.00</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button></li>
+  </ul>
+
+  <div id="budgetStatus" style="margin-top: 12px; font-size: 16px;"></div>
+</div>
+
+
+<!-- Modals for Shopping List -->
+<div id="shoppingModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Add Shopping Item</h3>
+    <label for="shoppingItemName">Item Name:</label>
+    <input type="text" id="shoppingItemName" placeholder="e.g. Bananas">
+    <button onclick="askForPrice()">Next</button>
+  </div>
+</div>
+
+<div id="priceModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Enter Price</h3>
+    <label for="shoppingItemPrice">Price ($):</label>
+    <input type="number" id="shoppingItemPrice" placeholder="e.g. 2.99">
+    <button onclick="saveShoppingItem()">Save</button>
+  </div>
+</div>
 
       <!-- Tab 4: Recipes (empty for now) -->
 

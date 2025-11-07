@@ -694,6 +694,27 @@ p {
 }
 .add-day-btn:hover { background-color: #519948; }
 .add-day-btn:active { transform: scale(0.98); }
+
+/* For Shopping List Budget */
+.budget-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.budget-row label {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.budget-row input[type="number"] {
+  font-size: 24px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
 /* Meal Planner Styling */
 .planner-title {
   font-size: 28px;
