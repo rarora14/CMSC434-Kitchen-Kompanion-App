@@ -116,16 +116,20 @@ const itemPrices = {
 function removeItem(button) {
   const item = button.parentElement;
   item.remove();
-  updateBudget(); // Recalculate after deletion
+  updateBudget(); 
 }
 
 function updateBudget() {
   const budget = parseFloat(document.getElementById("budgetInput").value);
   const items = document.querySelectorAll("#shoppingList li span");
   let total = 0;
+
   items.forEach(item => {
-    const name = item.textContent.trim();
-    total += itemPrices[name] || 0;
+    const text = item.textContent.trim();
+    const match = text.match(/\$([\d.]+)/); // extract price from text
+    if (match) {
+      total += parseFloat(match[1]);
+    }
   });
 
   const status = document.getElementById("budgetStatus");
@@ -137,6 +141,7 @@ function updateBudget() {
     status.style.color = "green";
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // Open Inventory tab by default
@@ -588,3 +593,20 @@ document.addEventListener("DOMContentLoaded", () => {
     insertRowInWeekOrder(mealPlanCard, newRow);
   });
 });
+
+
+
+
+window.openAddShoppingItem = function () {
+  const name = prompt("Item name:");
+  if (!name) return;
+
+  const priceRaw = prompt("Price ($):");
+  const price = parseFloat(priceRaw);
+  if (isNaN(price)) return;
+
+  const li = document.createElement("li");
+  li.innerHTML = `<span>${name} - $${price.toFixed(2)}</span> <button class="delete-btn" onclick="removeItem(this)">🗑️</button>`;
+  document.getElementById("shoppingList").appendChild(li);
+  updateBudget();
+};
