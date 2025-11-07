@@ -28,16 +28,6 @@
       flex-direction: column;
       min-height: 0;
     }
-    .tab-content {
-      flex: 1 1 0;
-      display: none;
-      overflow-y: auto;
-      padding: 32px 24px 90px 24px;
-      box-sizing: border-box;
-    }
-    .tab-content.active {
-      display: block;
-    }
     .navbar {
       height: 70px;
       display: flex;
@@ -243,17 +233,6 @@
        </div>
       <!-- Tab 2: Meal Planner -->
       <div id="tab2" class="tab-content">
-        <h2>Meal Planner</h2>
-        <table>
-          <tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th></tr>
-          <tr><td>Mon</td><td>Oatmeal</td><td>Salad</td><td>Chicken</td></tr>
-          <tr><td>Tue</td><td>Eggs</td><td>Sandwich</td><td>Pasta</td></tr>
-          <tr><td>Wed</td><td>Yogurt</td><td>Soup</td><td>Stir-fry</td></tr>
-        </table>
-        <p class="muted">(Minimal static planner — add editing later.)</p>
-      </div>
-     
-      <!-- Tab 3: Shopping List -->
         <h2 class="planner-title">Meal Planner</h2>
 
         <div class="planner-panel">
@@ -355,66 +334,66 @@
           </form>
         </dialog>
 
-            <dialog id="planWeekWizard" class="modal-card wide" aria-label="Plan week">
-              <form method="dialog" id="planWeekForm">
-                <div class="wizard-header">
-                  <h3 class="wizard-title">Plan Week</h3>
-                  <div class="wizard-steps">
-                    <span class="dot step1 active">1</span>
-                    <span class="dot step2">2</span>
-                    <span class="dot step3">3</span>
-                    <span class="dot step4">4</span>
-                  </div>
-                </div>
+        <dialog id="planWeekWizard" class="modal-card wide" aria-label="Plan week">
+          <form method="dialog" id="planWeekForm">
+            <div class="wizard-header">
+              <h3 class="wizard-title">Plan Week</h3>
+              <div class="wizard-steps">
+                <span class="dot step1 active">1</span>
+                <span class="dot step2">2</span>
+                <span class="dot step3">3</span>
+                <span class="dot step4">4</span>
+              </div>
+            </div>
 
-                <section class="wizard-step" data-step="1">
-                  <h4>Select days and meals to fill</h4>
-                  <p class="wizard-subcopy">Toggle the days and meal slots you want to auto-fill or plan manually.</p>
-                  <div class="grid-7">
-                    <label class="chip chip-day"><input type="checkbox" name="day" value="Mon" checked><span>Mon</span></label>
-                    <label class="chip chip-day"><input type="checkbox" name="day" value="Tue" checked><span>Tue</span></label>
-                    <label class="chip chip-day"><input type="checkbox" name="day" value="Wed" checked><span>Wed</span></label>
-                    <label class="chip chip-day"><input type="checkbox" name="day" value="Thu" checked><span>Thu</span></label>
-                    <label class="chip chip-day"><input type="checkbox" name="day" value="Fri" checked><span>Fri</span></label>
-                    <label class="chip chip-day"><input type="checkbox" name="day" value="Sat" checked><span>Sat</span></label>
-                    <label class="chip chip-day"><input type="checkbox" name="day" value="Sun" checked><span>Sun</span></label>
-                  </div>
-                  <div class="slot-pills">
-                    <label class="chip chip-slot"><input type="checkbox" name="slot" value="breakfast" checked><span>Breakfast</span></label>
-                    <label class="chip chip-slot"><input type="checkbox" name="slot" value="lunch" checked><span>Lunch</span></label>
-                    <label class="chip chip-slot"><input type="checkbox" name="slot" value="dinner" checked><span>Dinner</span></label>
-                  </div>
-                </section>
+            <section class="wizard-step" data-step="1">
+              <h4>Select days and meals to fill</h4>
+              <p class="wizard-subcopy">Toggle the days and meal slots you want to auto-fill or plan manually.</p>
+              <div class="grid-7">
+                <label class="chip chip-day"><input type="checkbox" name="day" value="Mon" checked><span>Mon</span></label>
+                <label class="chip chip-day"><input type="checkbox" name="day" value="Tue" checked><span>Tue</span></label>
+                <label class="chip chip-day"><input type="checkbox" name="day" value="Wed" checked><span>Wed</span></label>
+                <label class="chip chip-day"><input type="checkbox" name="day" value="Thu" checked><span>Thu</span></label>
+                <label class="chip chip-day"><input type="checkbox" name="day" value="Fri" checked><span>Fri</span></label>
+                <label class="chip chip-day"><input type="checkbox" name="day" value="Sat" checked><span>Sat</span></label>
+                <label class="chip chip-day"><input type="checkbox" name="day" value="Sun" checked><span>Sun</span></label>
+              </div>
+              <div class="slot-pills">
+                <label class="chip chip-slot"><input type="checkbox" name="slot" value="breakfast" checked><span>Breakfast</span></label>
+                <label class="chip chip-slot"><input type="checkbox" name="slot" value="lunch" checked><span>Lunch</span></label>
+                <label class="chip chip-slot"><input type="checkbox" name="slot" value="dinner" checked><span>Dinner</span></label>
+              </div>
+            </section>
 
-                <section class="wizard-step" data-step="2" hidden>
-                  <h4>Choose meals</h4>
-                  <p class="wizard-subcopy">Use our smart suggestions or type in your favorite recipes.</p>
-                  <div class="pick-legend" aria-hidden="true">
-                    <span>Day & slot</span>
-                    <span>Suggestion</span>
-                    <span>Custom meal</span>
-                  </div>
-                  <div id="pickList" class="pick-list"></div>
-                </section>
+            <section class="wizard-step" data-step="2" hidden>
+              <h4>Choose meals</h4>
+              <p class="wizard-subcopy">Use our smart suggestions or type in your favorite recipes.</p>
+              <div class="pick-legend" aria-hidden="true">
+                <span>Day & slot</span>
+                <span>Suggestion</span>
+                <span>Custom meal</span>
+              </div>
+              <div id="pickList" class="pick-list"></div>
+            </section>
 
-                <section class="wizard-step" data-step="3" hidden>
-                  <h4>Review your plan</h4>
-                  <p class="wizard-subcopy">Make final tweaks or remove meals you no longer want.</p>
-                  <div class="review-legend" aria-hidden="true">
-                    <span>Day</span>
-                    <span>Slot</span>
-                    <span>Meal name</span>
-                    <span></span>
-                  </div>
-                  <div id="reviewTable" class="review-table"></div>
-                </section>
+            <section class="wizard-step" data-step="3" hidden>
+              <h4>Review your plan</h4>
+              <p class="wizard-subcopy">Make final tweaks or remove meals you no longer want.</p>
+              <div class="review-legend" aria-hidden="true">
+                <span>Day</span>
+                <span>Slot</span>
+                <span>Meal name</span>
+                <span></span>
+              </div>
+              <div id="reviewTable" class="review-table"></div>
+            </section>
 
-                <section class="wizard-step" data-step="4" hidden>
-                  <h4>Apply changes</h4>
-                  <p class="wizard-subcopy">This will update your Meal Planner for the selected days and slots.</p>
-                  <div id="applySummary" class="apply-summary"></div>
-                  <div class="success-banner" hidden id="applySuccess">✅ Week plan applied to Meal Planner.</div>
-                </section>
+            <section class="wizard-step" data-step="4" hidden>
+              <h4>Apply changes</h4>
+              <p class="wizard-subcopy">This will update your Meal Planner for the selected days and slots.</p>
+              <div id="applySummary" class="apply-summary"></div>
+              <div class="success-banner" hidden id="applySuccess">✅ Week plan applied to Meal Planner.</div>
+            </section>
 
             <div class="wizard-actions">
               <button type="button" class="btn-ghost" id="pwCancel">Cancel</button>
@@ -425,7 +404,9 @@
             </div>
           </form>
         </dialog>
-      </div> <!-- end of tab2 -->
+      </div>
+
+      <!-- Tab 3: Shopping List -->
       <!-- Tab 3: Shopping List (empty for now) -->
       <div id="tab3" class="tab-content">
       <h2>Shopping List</h2>
