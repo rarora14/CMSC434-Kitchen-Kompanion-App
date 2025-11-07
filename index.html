@@ -32,7 +32,7 @@
       flex: 1 1 0;
       display: none;
       overflow-y: auto;
-      padding: 32px 24px 90px 24px; /* extra bottom padding for navbar */
+      padding: 32px 24px 90px 24px;
       box-sizing: border-box;
     }
     .tab-content.active {
@@ -246,17 +246,14 @@
         <h2 class="planner-title">Meal Planner</h2>
 
         <div class="planner-panel">
-          <div class="planner-header">
-            <div class="week-bar" aria-label="Week selector">
-              <button type="button" class="week-arrow" disabled>◀</button>
-              <div class="week-label">Week of Nov 3–9</div>
-              <button type="button" class="week-arrow" disabled>▶</button>
+            <div class="planner-header">
+              <div class="planner-actions">
+                <button type="button" class="btn-primary" id="plannerAutoFillBtn">Auto Fill Week</button>
+                <button type="button" class="btn-primary" id="plannerClearPlanBtn">Clear Plan</button>
+                <button type="button" class="btn-primary" id="plannerPlanWeekBtn">Plan Week</button>
+              </div>
             </div>
-            <div class="planner-actions">
-              <button type="button" class="btn-primary" id="plannerEditBtn">Edit Plan</button>
-              <button type="button" class="btn-primary" id="plannerGenerateBtn">Generate List</button>
-            </div>
-          </div>
+            <p class="planner-hint">Tap any meal card below to edit or add details.</p>
 
           <div class="planner-card">
             <table class="planner-table" aria-label="Weekly meal plan">
@@ -271,52 +268,152 @@
               <tbody>
                 <tr>
                   <td><span class="day-badge">Mon</span></td>
-                  <td><span class="meal-pill">Oatmeal</span></td>
-                  <td><span class="meal-pill">Salad</span></td>
-                  <td><span class="meal-pill">Chicken</span></td>
+                  <td><button type="button" class="meal-cell" data-day="Mon" data-slot="breakfast"><span class="meal-pill">Oatmeal</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Mon" data-slot="lunch"><span class="meal-pill">Salad</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Mon" data-slot="dinner"><span class="meal-pill">Chicken</span></button></td>
                 </tr>
                 <tr>
                   <td><span class="day-badge">Tue</span></td>
-                  <td><span class="meal-pill">Eggs</span></td>
-                  <td><span class="meal-pill">Sandwich</span></td>
-                  <td><span class="meal-pill">Pasta</span></td>
+                  <td><button type="button" class="meal-cell" data-day="Tue" data-slot="breakfast"><span class="meal-pill">Eggs</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Tue" data-slot="lunch"><span class="meal-pill">Sandwich</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Tue" data-slot="dinner"><span class="meal-pill">Pasta</span></button></td>
                 </tr>
                 <tr>
                   <td><span class="day-badge">Wed</span></td>
-                  <td><span class="meal-pill">Yogurt</span></td>
-                  <td><span class="meal-pill">Soup</span></td>
-                  <td><span class="meal-pill">Stir-fry</span></td>
+                  <td><button type="button" class="meal-cell" data-day="Wed" data-slot="breakfast"><span class="meal-pill">Yogurt</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Wed" data-slot="lunch"><span class="meal-pill">Soup</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Wed" data-slot="dinner"><span class="meal-pill">Stir-fry</span></button></td>
                 </tr>
                 <tr>
                   <td><span class="day-badge">Thu</span></td>
-                  <td><span class="meal-pill">Toast</span></td>
-                  <td><span class="meal-pill">Burrito</span></td>
-                  <td><span class="meal-pill">Curry</span></td>
+                  <td><button type="button" class="meal-cell" data-day="Thu" data-slot="breakfast"><span class="meal-pill">Toast</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Thu" data-slot="lunch"><span class="meal-pill">Burrito</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Thu" data-slot="dinner"><span class="meal-pill">Curry</span></button></td>
                 </tr>
                 <tr>
                   <td><span class="day-badge">Fri</span></td>
-                  <td><span class="meal-pill">Bagel</span></td>
-                  <td><span class="meal-pill">Sushi</span></td>
-                  <td><span class="meal-pill">Pizza</span></td>
+                  <td><button type="button" class="meal-cell" data-day="Fri" data-slot="breakfast"><span class="meal-pill">Bagel</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Fri" data-slot="lunch"><span class="meal-pill">Sushi</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Fri" data-slot="dinner"><span class="meal-pill">Pizza</span></button></td>
                 </tr>
                 <tr>
                   <td><span class="day-badge">Sat</span></td>
-                  <td><span class="meal-pill">Pancakes</span></td>
-                  <td><span class="meal-pill">Burger</span></td>
-                  <td><span class="meal-pill">Tacos</span></td>
+                  <td><button type="button" class="meal-cell" data-day="Sat" data-slot="breakfast"><span class="meal-pill">Pancakes</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Sat" data-slot="lunch"><span class="meal-pill">Burger</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Sat" data-slot="dinner"><span class="meal-pill">Tacos</span></button></td>
                 </tr>
                 <tr>
                   <td><span class="day-badge">Sun</span></td>
-                  <td><span class="meal-pill">Smoothie</span></td>
-                  <td><span class="meal-pill">Quinoa Bowl</span></td>
-                  <td><span class="meal-pill">Roast</span></td>
+                  <td><button type="button" class="meal-cell" data-day="Sun" data-slot="breakfast"><span class="meal-pill">Smoothie</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Sun" data-slot="lunch"><span class="meal-pill">Quinoa Bowl</span></button></td>
+                  <td><button type="button" class="meal-cell" data-day="Sun" data-slot="dinner"><span class="meal-pill">Roast</span></button></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p class="planner-note">(Interactive editing and smart list coming soon)</p>
+          <p class="planner-note"></p>
         </div>
+        <dialog id="mealEditor" class="modal-card" aria-label="Edit meal">
+          <h3>Edit Meal</h3>
+          <form method="dialog" id="mealForm">
+            <div class="field">
+              <label for="mealName">Name</label>
+              <input id="mealName" name="name" type="text" required placeholder="e.g., Stir-fry" />
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="mealSlot">Slot</label>
+                <input id="mealSlot" name="slot" type="text" readonly />
+              </div>
+              <div class="field">
+                <label for="mealDay">Day</label>
+                <input id="mealDay" name="day" type="text" readonly />
+              </div>
+            </div>
+            <div class="field">
+              <label for="mealNotes">Notes</label>
+              <textarea id="mealNotes" name="notes" rows="3" placeholder="Optional notes (sauce, side, etc.)"></textarea>
+            </div>
+
+            <div class="modal-actions">
+              <button type="submit" class="btn-primary">Save</button>
+              <button type="button" id="clearMeal" class="btn-ghost">Clear</button>
+              <button type="button" id="cancelMeal" class="btn-ghost">Cancel</button>
+            </div>
+          </form>
+        </dialog>
+
+            <dialog id="planWeekWizard" class="modal-card wide" aria-label="Plan week">
+              <form method="dialog" id="planWeekForm">
+                <div class="wizard-header">
+                  <h3 class="wizard-title">Plan Week</h3>
+                  <div class="wizard-steps">
+                    <span class="dot step1 active">1</span>
+                    <span class="dot step2">2</span>
+                    <span class="dot step3">3</span>
+                    <span class="dot step4">4</span>
+                  </div>
+                </div>
+
+                <section class="wizard-step" data-step="1">
+                  <h4>Select days and meals to fill</h4>
+                  <p class="wizard-subcopy">Toggle the days and meal slots you want to auto-fill or plan manually.</p>
+                  <div class="grid-7">
+                    <label class="chip chip-day"><input type="checkbox" name="day" value="Mon" checked><span>Mon</span></label>
+                    <label class="chip chip-day"><input type="checkbox" name="day" value="Tue" checked><span>Tue</span></label>
+                    <label class="chip chip-day"><input type="checkbox" name="day" value="Wed" checked><span>Wed</span></label>
+                    <label class="chip chip-day"><input type="checkbox" name="day" value="Thu" checked><span>Thu</span></label>
+                    <label class="chip chip-day"><input type="checkbox" name="day" value="Fri" checked><span>Fri</span></label>
+                    <label class="chip chip-day"><input type="checkbox" name="day" value="Sat" checked><span>Sat</span></label>
+                    <label class="chip chip-day"><input type="checkbox" name="day" value="Sun" checked><span>Sun</span></label>
+                  </div>
+                  <div class="slot-pills">
+                    <label class="chip chip-slot"><input type="checkbox" name="slot" value="breakfast" checked><span>Breakfast</span></label>
+                    <label class="chip chip-slot"><input type="checkbox" name="slot" value="lunch" checked><span>Lunch</span></label>
+                    <label class="chip chip-slot"><input type="checkbox" name="slot" value="dinner" checked><span>Dinner</span></label>
+                  </div>
+                </section>
+
+                <section class="wizard-step" data-step="2" hidden>
+                  <h4>Choose meals</h4>
+                  <p class="wizard-subcopy">Use our smart suggestions or type in your favorite recipes.</p>
+                  <div class="pick-legend" aria-hidden="true">
+                    <span>Day & slot</span>
+                    <span>Suggestion</span>
+                    <span>Custom meal</span>
+                  </div>
+                  <div id="pickList" class="pick-list"></div>
+                </section>
+
+                <section class="wizard-step" data-step="3" hidden>
+                  <h4>Review your plan</h4>
+                  <p class="wizard-subcopy">Make final tweaks or remove meals you no longer want.</p>
+                  <div class="review-legend" aria-hidden="true">
+                    <span>Day</span>
+                    <span>Slot</span>
+                    <span>Meal name</span>
+                    <span></span>
+                  </div>
+                  <div id="reviewTable" class="review-table"></div>
+                </section>
+
+                <section class="wizard-step" data-step="4" hidden>
+                  <h4>Apply changes</h4>
+                  <p class="wizard-subcopy">This will update your Meal Planner for the selected days and slots.</p>
+                  <div id="applySummary" class="apply-summary"></div>
+                  <div class="success-banner" hidden id="applySuccess">✅ Week plan applied to Meal Planner.</div>
+                </section>
+
+            <div class="wizard-actions">
+              <button type="button" class="btn-ghost" id="pwCancel">Cancel</button>
+              <div class="spacer"></div>
+              <button type="button" class="btn-ghost" id="pwBack" disabled>Back</button>
+              <button type="button" class="btn-primary" id="pwNext">Next</button>
+              <button type="submit" class="btn-primary" id="pwApply" hidden>Apply</button>
+            </div>
+          </form>
+        </dialog>
       </div> <!-- end of tab2 -->
       <!-- Tab 3: Shopping List (empty for now) -->
       <div id="tab3" class="tab-content">

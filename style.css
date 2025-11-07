@@ -309,17 +309,17 @@ label[for="budgetInput"] {
   background-color: white;
   border-radius: 20px;
   position: relative;
-  margin: 20px auto;   /* reduced from 40px or 80px → moves it up */
+  margin: 20px auto;   
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 
 .mini-search {
   position: absolute;
-  top: 25px;           /* moved up toward the top */
-  right: 90px;         /* keeps it on the right side */
-  width: 120px;        /* narrower width */
-  height: 25px;        /* thinner height */
+  top: 25px;           
+  right: 90px;         
+  width: 120px;      
+  height: 25px;        
   padding: 4px 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -330,18 +330,18 @@ label[for="budgetInput"] {
 
 .recipe-item {
   width: 400px;
-  height: 70px;              /* increased height */
+  height: 70px;              
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;        /* vertically center text */
-  justify-content: flex-start; /* keep text on the left */
-  padding-left: 15px;         /* space from left edge */
+  align-items: center;        
+  justify-content: flex-start; 
+  padding-left: 15px;        
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin: 15px auto;          /* increased spacing between cards */
+  margin: 15px auto;         
 }
 
 
@@ -362,47 +362,47 @@ label[for="budgetInput"] {
 }
 
 .search-btn:hover {
-  background-color: #519948; /* slightly darker on hover */
+  background-color: #519948; 
 }
 
 p {
-  font-size: 20px;       /* increases text size */
-  font-weight: bold;     /* makes it bold */
-  margin-top: 60px;      /* moves it down slightly */
+  font-size: 20px;       
+  font-weight: bold;     
+  margin-top: 60px;    
 }
 
 .recipe-title {
   position: relative;
-  top: 25px;        /* pushes it down inside the card */
-  left: 15px;       /* spacing from left edge */
+  top: 25px;        
+  left: 15px;       
   font-size: 20px;
   font-weight: bold;
-  margin: 0;        /* reset margins (not needed with absolute) */
+  margin: 0;     
 }
 
 .view-btn {
   background-color: #5cae50;
   color: white;
   border: none;
-  border-radius: 6px;          /* small rounded edges */
+  border-radius: 6px;       
   padding: 8px 18px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
   margin-left: auto;
-  margin-right: 10px;          /* moves button slightly to the left */
+  margin-right: 10px;        
 }
 
 /* Hover effect */
 .view-btn:hover {
-  background-color: #519948;   /* darker on hover */
+  background-color: #519948;  
 }
 
 /* Pressed (active) effect */
 .view-btn:active {
-  background-color: #3e7a38;   /* even darker green when clicked */
-  transform: scale(0.97);      /* subtle press-down animation */
+  background-color: #3e7a38;  
+  transform: scale(0.97);     
 }
 
 
@@ -412,17 +412,17 @@ p {
 .recipe-status {
   font-size: 12px;
   color: gray;
-  margin-top: 4px;      /* spacing under the name */
-  width: 100%;          /* same width as name area */
+  margin-top: 4px;     
+  width: 100%;       
 }
 
 .recipe-status.available {
-  color: #5cae50;   /* green for available */
+  color: #5cae50;   
   font-weight: 500;
 }
 
 .recipe-status.missing {
-  color: #d9534f;   /* red for missing */
+  color: #d9534f;  
   font-weight: 500;
 }
 
@@ -431,10 +431,10 @@ p {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.45);
-  display: none;               /* hidden unless .show */
+  display: none;             
   align-items: center;
   justify-content: center;
-  z-index: 1000;               /* above your navbar/cards */
+  z-index: 1000;             
 }
 
 /* show state */
@@ -463,15 +463,15 @@ p {
 .modal-close:hover { background: #e7e7e7; }
 
 .expiring-card {
-  width: 510px;              /* same width as recipe-card */
-  min-height: 250px;         /* a bit taller than recipe-card */
+  width: 510px;             
+  min-height: 250px;         
   background-color: white;
   border-radius: 20px;
   position: relative;
-  margin: 20px auto;         /* centers and gives top/bottom spacing */
+  margin: 20px auto;       
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;             /* inner spacing */
-  border: none;              /* optional: cleaner look like recipe-card */
+  padding: 20px;             
+  border: none;              
 }
 
 .expiring-header {
@@ -484,8 +484,8 @@ p {
 .expiring-title {
   font-weight: 700;
   color: #5a351e;
-  font-size: 24px;       /* larger and more readable */
-  letter-spacing: 0.5px; /* subtle spacing for polish */
+  font-size: 24px;       
+  letter-spacing: 0.5px; 
 }
 
 .expiring-filter select {
@@ -526,9 +526,9 @@ p {
   font-weight: 600;
 }
 
-.badge-date.warn { background: #fff3cd; border-color: #ffe089; }     /* <=7 days */
-.badge-date.urgent { background: #fde2e1; border-color: #f5b5b5; }   /* <=2 days */
-.badge-date.expired { background: #f8d7da; border-color: #f1aeb5; }  /* past */
+.badge-date.warn { background: #fff3cd; border-color: #ffe089; }    
+.badge-date.urgent { background: #fde2e1; border-color: #f5b5b5; }   
+.badge-date.expired { background: #f8d7da; border-color: #f1aeb5; }  
 
 .expiring-actions { display: flex; gap: 6px; }
 .expiring-actions .btn {
@@ -553,18 +553,18 @@ p {
 .expiring-title-wrapper {
   display: flex;
   align-items: center;
-  gap: 8px;               /* small space between text and square */
+  gap: 8px;               
 }
 
 .expiring-subcontainer {
-  width: 90%;                 /* fits nicely inside card */
-  min-height: 45px;          /* controls height */
-  background-color: white;    /* big white rectangle */
-  border-radius: 16px;        /* smooth edges */
-  margin: 20px auto;          /* centers inside the parent */
+  width: 90%;               
+  min-height: 45px;          
+  background-color: white;    
+  border-radius: 16px;       
+  margin: 20px auto;         
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   border: 1px solid #e0bfae;
-  padding: 20px;              /* space for inner content */
+  padding: 20px;             
   display: flex;
   flex-direction: column;
 
@@ -584,12 +584,12 @@ p {
   color: #8b6a58;
   background-color: #fff4ef;
   border-radius: 10px;
-  padding: 3px 6px;                 /* smaller padding = slimmer box */
+  padding: 3px 6px;                
   border: 1px solid rgba(160,90,44,0.12);
   font-weight: 500;
-  width: fit-content;               /* 👈 makes box only as wide as the text */
-  min-width: 80px;                  /* optional: ensures it doesn’t collapse too much */
-  text-align: center;               /* centers text inside if width varies */
+  width: fit-content;               
+  min-width: 80px;                
+  text-align: center;          
 }
 
 .mealplan-card {
@@ -597,9 +597,9 @@ p {
   background-color: white;
   border-radius: 20px;
   position: relative;
-  margin: 15px auto;          /* smaller top/bottom space */
+  margin: 15px auto;          
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  padding: 14px 20px;         /* tighter padding makes it look shorter */
+  padding: 14px 20px;         
 }
 
 .mealplan-title {
@@ -701,6 +701,12 @@ p {
   color: #4a2f1a;
   margin: 8px 6px 12px;
 }
+.planner-hint {
+  margin: 4px 0 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #8c7a6d;
+}
 
 .planner-panel {
   background: #fff8f0;
@@ -711,56 +717,35 @@ p {
 
 .planner-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
   margin-bottom: 12px;
-}
-
-/* Week bar static for now */
-.week-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.week-label {
-  font-size: 15px;
-  color: #7a6a5e;
-  background: #fff;
-  border: 1px solid #edd7c6;
-  border-radius: 999px;
-  padding: 6px 12px;
-}
-.week-arrow {
-  background: #f6ece4;
-  border: 1px solid #edd7c6;
-  color: #6b5749;
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-weight: 700;
-  cursor: default; /* disabled for now */
 }
 
 .planner-actions {
   display: flex;
+  justify-content: center;
   gap: 10px;
 }
 
 /* buttons */
 .btn-primary {
-  background: #6db65b;
-  color: #fff;
+  background-color: #5cae50;
+  color: white;
   border: none;
-  border-radius: 16px;
-  padding: 10px 16px;
-  font-size: 16px;
-  font-weight: 700;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-  transition: background .2s ease, transform .02s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
-.btn-primary:hover { background: #5cae50; }
-.btn-primary:active { transform: translateY(1px); }
+.btn-primary:hover {
+  background-color: #519948;
+}
+.btn-primary:active {
+  background-color: #3e7a38;
+  transform: scale(0.97);
+}
 
 /* Card holding the table */
 .planner-card {
@@ -770,7 +755,7 @@ p {
   padding: 10px;
 }
 
-/* Table styling: readable and touch-friendly */
+/* Table styling*/
 .planner-table {
   width: 100%;
   border-collapse: collapse;
@@ -803,19 +788,335 @@ p {
 }
 .meal-pill {
   display: inline-block;
-  background: #eaf5ea;
-  color: #2e7d32;
-  border: 1px solid #d7ecd7;
-  padding: 8px 12px;          
-  border-radius: 999px;
-  line-height: 1;
-  font-weight: 700;
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #111;
 }
-.meal-pill:hover { border-color: #cfe6cf; }
+.meal-pill:hover { border-color: transparent; }
 
 .planner-note {
   color: #8c7f73;
   font-size: 13px;
   text-align: center;
   margin-top: 12px;
+}
+
+/* Meal Editor Modal */
+.modal-card {
+  border: 1px solid #e0bfae;
+  border-radius: 14px;
+  padding: 16px;
+  max-width: 520px;
+  width: 92%;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+.modal-card::backdrop {
+  background: rgba(0,0,0,.25);
+}
+.modal-card h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #4a2f1a;
+}
+.field {
+  margin-bottom: 10px;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.field label {
+  display: block;
+  font-size: 13px;
+  color: #7a6a5e;
+  margin-bottom: 4px;
+}
+.field input[type="text"],
+.field textarea,
+.field select {
+  width: 100%;
+  border: 1px solid #e6d6ca;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 15px;
+  background: #fff;
+}
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.btn-ghost {
+  background: #fff;
+  color: #7a3f1a;
+  border: 1px solid rgba(160,90,44,0.22);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-ghost:hover {
+  background: #fff3e9;
+}
+.meal-cell {
+  display: block;
+  width: 100%;
+  background: #fff6ef;
+  border: 1px solid #f3d7c4;
+  border-radius: 14px;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: box-shadow 0.2s ease, transform 0.1s ease, background 0.2s ease;
+}
+.meal-cell:focus {
+  outline: 2px solid rgba(243, 162, 98, 0.45);
+  outline-offset: 2px;
+}
+.meal-cell:hover {
+  box-shadow: 0 8px 18px rgba(51, 32, 21, 0.08);
+}
+.meal-cell:active {
+  transform: scale(0.98);
+  background: #ffe8d6;
+}
+.meal-pill.pill-empty {
+  color: #888;
+  font-weight: 500;
+}
+
+/* Plan Week Wizard */
+.modal-card.wide {
+  max-width: 760px;
+  background: #fffdf9;
+}
+.wizard-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+  border-bottom: 1px solid #f1e3d6;
+  padding-bottom: 8px;
+}
+.wizard-title {
+  margin:0;
+  font-size:20px;
+  color:#4a2f1a;
+}
+.wizard-steps {
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.wizard-steps .dot {
+  position:relative;
+  display:inline-flex;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:2px solid #edd7c6;
+  background:#fff;
+  color:#a05a2c;
+  font-weight:700;
+  font-size:15px;
+  align-items:center;
+  justify-content:center;
+}
+.wizard-steps .dot:not(:first-child)::before {
+  content:'';
+  position:absolute;
+  width:0;
+  height:0;
+}
+.wizard-steps .dot.active {
+  background:#a05a2c;
+  color:#fff;
+  border-color:#a05a2c;
+}
+.wizard-steps .dot.active::before {
+  background:#a05a2c;
+}
+.wizard-step h4 {
+  margin:6px 0 10px;
+  font-size:16px;
+  color:#5a351e;
+}
+.wizard-step {
+  background:#fff;
+  border:1px solid #f0e7dc;
+  border-radius:16px;
+  padding:16px 18px;
+  margin-bottom:18px;
+  box-shadow:0 10px 24px rgba(51,32,21,0.06);
+}
+.wizard-subcopy {
+  margin:0 0 12px;
+  font-size:14px;
+  color:#7a6a5e;
+}
+.grid-7 {
+  display:grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap:12px;
+  margin-bottom:14px;
+}
+.chip {
+  display:inline-flex;
+  position:relative;
+  justify-content:center;
+  align-items:center;
+}
+.chip input {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  cursor:pointer;
+}
+.chip span {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:56px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid #edd7c6;
+  background:#fff;
+  font-weight:600;
+  color:#6b5749;
+  transition:all .2s ease;
+}
+.chip input:checked + span {
+  background:#ffe3c2;
+  border-color:#f0a868;
+  color:#7a3f1a;
+}
+.chip input:focus-visible + span {
+  outline:3px solid rgba(160,90,44,0.35);
+  outline-offset:2px;
+}
+.chip-day span {
+  min-width:52px;
+}
+.chip-slot span {
+  min-width:96px;
+  padding:10px 18px;
+}
+.slot-pills {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.pick-list {
+  display:grid;
+  gap:10px;
+  max-height:48vh;
+  overflow:auto;
+  padding-right:6px;
+  margin-top:6px;
+}
+.pick-row {
+  display:grid;
+  grid-template-columns: 80px 1fr 1fr;
+  gap:8px;
+  align-items:center;
+  border:1px solid #f3e4d7;
+  border-radius:10px;
+  padding:8px;
+  background:#fffdfa;
+  box-shadow:0 6px 14px rgba(51,32,21,0.06);
+}
+.pick-row .daypill {
+  background:#fbe8d5;
+  border:1px solid #f0d2bc;
+  padding:6px 10px;
+  border-radius:999px;
+  text-align:center;
+  font-weight:700;
+  color:#4a2f1a;
+}
+.pick-row select,
+.pick-row input[type="text"] {
+  width:100%;
+  border:1px solid #e6d6ca;
+  border-radius:8px;
+  padding:6px 8px;
+  font-size:14px;
+  background:#fff;
+}
+.pick-legend,
+.review-legend {
+  display:grid;
+  gap:8px;
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#a08a78;
+  margin:4px 0;
+}
+.pick-legend {
+  grid-template-columns: 80px 1fr 1fr;
+  padding:0 4px;
+}
+.review-legend {
+  grid-template-columns: 90px 100px 1fr auto;
+  padding:0 4px;
+}
+.review-table {
+  display:grid;
+  gap:8px;
+}
+.review-row {
+  display:grid;
+  grid-template-columns: 90px 100px 1fr auto;
+  gap:8px;
+  align-items:center;
+  padding:8px;
+  border:1px solid #f3e4d7;
+  border-radius:10px;
+  background:#fffdfa;
+  box-shadow:0 6px 16px rgba(51,32,21,0.05);
+}
+.review-row .mini-edit {
+  border:1px solid #e6d6ca;
+  border-radius:8px;
+  padding:6px 8px;
+  font-size:14px;
+  background:#fff;
+}
+.review-row .btn-ghost {
+  padding:6px 10px;
+  font-size:13px;
+}
+.apply-summary {
+  padding:10px;
+  background:#fffaf4;
+  border:1px solid #f0e7dc;
+  border-radius:10px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.7);
+}
+.success-banner {
+  margin-top:10px;
+  padding:10px;
+  background:#eaf5ea;
+  color:#2e7d32;
+  border:1px solid #d7ecd7;
+  border-radius:10px;
+  font-weight:700;
+  box-shadow:0 4px 12px rgba(46,125,50,0.15);
+}
+.wizard-actions {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+}
+.wizard-actions .spacer {
+  flex:1;
 }
