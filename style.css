@@ -44,7 +44,7 @@ body {
   flex: 1;
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 18px !important;
   text-align: center;
   padding: 8px 0 6px 0;
   color: #a05a2c;
@@ -65,8 +65,8 @@ body {
 }
 
 .navbar img {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   margin-bottom: 2px;
 }
 
@@ -114,9 +114,9 @@ body {
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   font-size: 28px;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 80%;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .delete-btn {
@@ -303,6 +303,397 @@ label[for="budgetInput"] {
   background: #fffaf8;
 }
 
+.recipe-card {
+  width: 550px;
+  height: 250px;
+  background-color: white;
+  border-radius: 20px;
+  position: relative;
+  margin: 20px auto;   /* reduced from 40px or 80px → moves it up */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.mini-search {
+  position: absolute;
+  top: 25px;           /* moved up toward the top */
+  right: 90px;         /* keeps it on the right side */
+  width: 120px;        /* narrower width */
+  height: 25px;        /* thinner height */
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  outline: none;
+}
+
+
+.recipe-item {
+  width: 400px;
+  height: 70px;              /* increased height */
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;        /* vertically center text */
+  justify-content: flex-start; /* keep text on the left */
+  padding-left: 15px;         /* space from left edge */
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 15px auto;          /* increased spacing between cards */
+}
+
+
+
+.search-btn {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  height: 35px;
+  padding: 0 10px;
+  background-color: #5cae50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.search-btn:hover {
+  background-color: #519948; /* slightly darker on hover */
+}
+
+p {
+  font-size: 20px;       /* increases text size */
+  font-weight: bold;     /* makes it bold */
+  margin-top: 60px;      /* moves it down slightly */
+}
+
+.recipe-title {
+  position: relative;
+  top: 25px;        /* pushes it down inside the card */
+  left: 15px;       /* spacing from left edge */
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;        /* reset margins (not needed with absolute) */
+}
+
+.view-btn {
+  background-color: #5cae50;
+  color: white;
+  border: none;
+  border-radius: 6px;          /* small rounded edges */
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-left: auto;
+  margin-right: 10px;          /* moves button slightly to the left */
+}
+
+/* Hover effect */
+.view-btn:hover {
+  background-color: #519948;   /* darker on hover */
+}
+
+/* Pressed (active) effect */
+.view-btn:active {
+  background-color: #3e7a38;   /* even darker green when clicked */
+  transform: scale(0.97);      /* subtle press-down animation */
+}
+
+
+
+
+
+.recipe-status {
+  font-size: 12px;
+  color: gray;
+  margin-top: 4px;      /* spacing under the name */
+  width: 100%;          /* same width as name area */
+}
+
+.recipe-status.available {
+  color: #5cae50;   /* green for available */
+  font-weight: 500;
+}
+
+.recipe-status.missing {
+  color: #d9534f;   /* red for missing */
+  font-weight: 500;
+}
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;               /* hidden unless .show */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;               /* above your navbar/cards */
+}
+
+/* show state */
+.overlay.show { display: flex; }
+
+/* Box styling */
+.modal-box {
+  background: #fff;
+  width: min(560px, 90vw);
+  max-height: 80vh;
+  overflow: auto;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Close button */
+.modal-close {
+  border: none;
+  background: #f2f2f2;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  float: right;
+}
+.modal-close:hover { background: #e7e7e7; }
+
+.expiring-card {
+  width: 510px;              /* same width as recipe-card */
+  min-height: 250px;         /* a bit taller than recipe-card */
+  background-color: white;
+  border-radius: 20px;
+  position: relative;
+  margin: 20px auto;         /* centers and gives top/bottom spacing */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;             /* inner spacing */
+  border: none;              /* optional: cleaner look like recipe-card */
+}
+
+.expiring-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.expiring-title {
+  font-weight: 700;
+  color: #5a351e;
+  font-size: 24px;       /* larger and more readable */
+  letter-spacing: 0.5px; /* subtle spacing for polish */
+}
+
+.expiring-filter select {
+  padding: 4px 8px;
+  border: 1px solid #e6d6ca;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.expiring-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.expiring-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #e0bfae33;
+  border-radius: 10px;
+}
+
+.expiring-meta { display: flex; flex-direction: column; gap: 2px; }
+.expiring-name { font-weight: 600; color: #4a2b18; }
+.expiring-sub  { font-size: 13px; color: #7a5a48; display: flex; gap: 6px; flex-wrap: wrap; }
+
+.badge-date, .badge-qty {
+  background: #fff4ef;
+  color: #8a4a28;
+  border: 1px solid rgba(160,90,44,0.12);
+  border-radius: 8px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-date.warn { background: #fff3cd; border-color: #ffe089; }     /* <=7 days */
+.badge-date.urgent { background: #fde2e1; border-color: #f5b5b5; }   /* <=2 days */
+.badge-date.expired { background: #f8d7da; border-color: #f1aeb5; }  /* past */
+
+.expiring-actions { display: flex; gap: 6px; }
+.expiring-actions .btn {
+  border: 1px solid rgba(160,90,44,0.12);
+  background: #fff;
+  color: #7a3f1a;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.expiring-actions .btn:hover { background: #ffeede; }
+
+.expiring-empty {
+  font-size: 14px;
+  color: #8b6a58;
+  text-align: center;
+  padding: 10px 0 4px;
+  display: none;
+}
+
+.expiring-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;               /* small space between text and square */
+}
+
+.expiring-subcontainer {
+  width: 90%;                 /* fits nicely inside card */
+  min-height: 45px;          /* controls height */
+  background-color: white;    /* big white rectangle */
+  border-radius: 16px;        /* smooth edges */
+  margin: 20px auto;          /* centers inside the parent */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  border: 1px solid #e0bfae;
+  padding: 20px;              /* space for inner content */
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+
+
+.expiring-ing-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #4a2b18;
+}
+
+.expiring-ing-date {
+  font-size: 14px;
+  color: #8b6a58;
+  background-color: #fff4ef;
+  border-radius: 10px;
+  padding: 3px 6px;                 /* smaller padding = slimmer box */
+  border: 1px solid rgba(160,90,44,0.12);
+  font-weight: 500;
+  width: fit-content;               /* 👈 makes box only as wide as the text */
+  min-width: 80px;                  /* optional: ensures it doesn’t collapse too much */
+  text-align: center;               /* centers text inside if width varies */
+}
+
+.mealplan-card {
+  width: 515px;
+  background-color: white;
+  border-radius: 20px;
+  position: relative;
+  margin: 15px auto;          /* smaller top/bottom space */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  padding: 14px 20px;         /* tighter padding makes it look shorter */
+}
+
+.mealplan-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4a2b18;
+  margin-bottom: 14px;
+}
+
+.mealplan-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fffdf8;
+  border: 1px solid #e0bfae;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.mealplan-day {
+  font-weight: 700;
+  color: #5a351e;
+  width: 60px;
+}
+
+.mealplan-meal {
+  flex: 1;
+  font-size: 15px;
+  color: #7a5a48;
+}
+
+.mealplan-btn {
+  background-color: #5cae50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.mealplan-btn:hover {
+  background-color: #519948;
+}
+
+.mealplan-btn.add {
+  background-color: #f6b24a;
+}
+
+.mealplan-btn.add:hover {
+  background-color: #e49a34;
+}
+
+.mealplan-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.remove-day-btn {
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.remove-day-btn:hover {
+  background-color: #e63946;
+}
+
+.mealplan-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.add-day-btn {
+  background-color: #5cae50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.add-day-btn:hover { background-color: #519948; }
+.add-day-btn:active { transform: scale(0.98); }
 /* Meal Planner Styling */
 .planner-title {
   font-size: 28px;
