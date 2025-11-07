@@ -593,6 +593,12 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
 
+document.getElementById('plannerEditBtn')?.addEventListener('click', () => {
+  alert('Edit Plan – coming soon');
+});
+document.getElementById('plannerGenerateBtn')?.addEventListener('click', () => {
+  alert('Generate Shopping List – coming soon');
+});
 
 
 
