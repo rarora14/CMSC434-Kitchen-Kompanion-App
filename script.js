@@ -588,11 +588,3 @@ document.addEventListener("DOMContentLoaded", () => {
     insertRowInWeekOrder(mealPlanCard, newRow);
   });
 });
-  
-  
-  
-
-
-
-
-
