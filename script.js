@@ -359,5 +359,12 @@ document.addEventListener('DOMContentLoaded', function () {
   if (s) s.addEventListener('input', filterInventory);
 });
 
+document.getElementById('plannerEditBtn')?.addEventListener('click', () => {
+  alert('Edit Plan – coming soon');
+});
+document.getElementById('plannerGenerateBtn')?.addEventListener('click', () => {
+  alert('Generate Shopping List – coming soon');
+});
+
 
 

@@ -302,3 +302,129 @@ label[for="budgetInput"] {
   border-radius: 10px;
   background: #fffaf8;
 }
+
+/* Meal Planner Styling */
+.planner-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4a2f1a;
+  margin: 8px 6px 12px;
+}
+
+.planner-panel {
+  background: #fff8f0;
+  border: 2px solid #e0bfae;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.planner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Week bar static for now */
+.week-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.week-label {
+  font-size: 15px;
+  color: #7a6a5e;
+  background: #fff;
+  border: 1px solid #edd7c6;
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+.week-arrow {
+  background: #f6ece4;
+  border: 1px solid #edd7c6;
+  color: #6b5749;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 700;
+  cursor: default; /* disabled for now */
+}
+
+.planner-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* buttons */
+.btn-primary {
+  background: #6db65b;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  transition: background .2s ease, transform .02s ease;
+}
+.btn-primary:hover { background: #5cae50; }
+.btn-primary:active { transform: translateY(1px); }
+
+/* Card holding the table */
+.planner-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 10px;
+}
+
+/* Table styling: readable and touch-friendly */
+.planner-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.planner-table th, .planner-table td {
+  padding: 14px 10px;         
+  border-bottom: 1px solid #f0e7dc;
+  font-size: 16px;
+  color: #333;
+}
+.planner-table th {
+  font-weight: 700;
+  color: #665a51;
+  background: #fffaf4;
+}
+.planner-table tr:last-child td { border-bottom: none; }
+
+/* Day badge & meal chips */
+.day-badge {
+  display: inline-block;
+  font-weight: 700;
+  color: #4a2f1a;
+  background: #f2e5da;
+  border: 1px solid #edd7c6;
+  border-radius: 999px;
+  padding: 6px 12px;
+  min-width: 44px;
+  text-align: center;
+}
+.meal-pill {
+  display: inline-block;
+  background: #eaf5ea;
+  color: #2e7d32;
+  border: 1px solid #d7ecd7;
+  padding: 8px 12px;          
+  border-radius: 999px;
+  line-height: 1;
+  font-weight: 700;
+}
+.meal-pill:hover { border-color: #cfe6cf; }
+
+.planner-note {
+  color: #8c7f73;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 12px;
+}

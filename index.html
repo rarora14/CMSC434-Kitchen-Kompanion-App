@@ -238,17 +238,83 @@
            </div>
          </div>
        </div>
-      <!-- Tab 2: Meal Planner (empty for now) -->
+      <!-- Tab 2: Meal Planner -->
       <div id="tab2" class="tab-content">
-        <h2>Meal Planner</h2>
-        <table>
-          <tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th></tr>
-          <tr><td>Mon</td><td>Oatmeal</td><td>Salad</td><td>Chicken</td></tr>
-          <tr><td>Tue</td><td>Eggs</td><td>Sandwich</td><td>Pasta</td></tr>
-          <tr><td>Wed</td><td>Yogurt</td><td>Soup</td><td>Stir-fry</td></tr>
-        </table>
-        <p class="muted">(Minimal static planner — add editing later.)</p>
-      </div>
+        <h2 class="planner-title">Meal Planner</h2>
+
+        <div class="planner-panel">
+          <div class="planner-header">
+            <div class="week-bar" aria-label="Week selector">
+              <button type="button" class="week-arrow" disabled>◀</button>
+              <div class="week-label">Week of Nov 3–9</div>
+              <button type="button" class="week-arrow" disabled>▶</button>
+            </div>
+            <div class="planner-actions">
+              <button type="button" class="btn-primary" id="plannerEditBtn">Edit Plan</button>
+              <button type="button" class="btn-primary" id="plannerGenerateBtn">Generate List</button>
+            </div>
+          </div>
+
+          <div class="planner-card">
+            <table class="planner-table" aria-label="Weekly meal plan">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Breakfast</th>
+                  <th>Lunch</th>
+                  <th>Dinner</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="day-badge">Mon</span></td>
+                  <td><span class="meal-pill">Oatmeal</span></td>
+                  <td><span class="meal-pill">Salad</span></td>
+                  <td><span class="meal-pill">Chicken</span></td>
+                </tr>
+                <tr>
+                  <td><span class="day-badge">Tue</span></td>
+                  <td><span class="meal-pill">Eggs</span></td>
+                  <td><span class="meal-pill">Sandwich</span></td>
+                  <td><span class="meal-pill">Pasta</span></td>
+                </tr>
+                <tr>
+                  <td><span class="day-badge">Wed</span></td>
+                  <td><span class="meal-pill">Yogurt</span></td>
+                  <td><span class="meal-pill">Soup</span></td>
+                  <td><span class="meal-pill">Stir-fry</span></td>
+                </tr>
+                <tr>
+                  <td><span class="day-badge">Thu</span></td>
+                  <td><span class="meal-pill">Toast</span></td>
+                  <td><span class="meal-pill">Burrito</span></td>
+                  <td><span class="meal-pill">Curry</span></td>
+                </tr>
+                <tr>
+                  <td><span class="day-badge">Fri</span></td>
+                  <td><span class="meal-pill">Bagel</span></td>
+                  <td><span class="meal-pill">Sushi</span></td>
+                  <td><span class="meal-pill">Pizza</span></td>
+                </tr>
+                <tr>
+                  <td><span class="day-badge">Sat</span></td>
+                  <td><span class="meal-pill">Pancakes</span></td>
+                  <td><span class="meal-pill">Burger</span></td>
+                  <td><span class="meal-pill">Tacos</span></td>
+                </tr>
+                <tr>
+                  <td><span class="day-badge">Sun</span></td>
+                  <td><span class="meal-pill">Smoothie</span></td>
+                  <td><span class="meal-pill">Quinoa Bowl</span></td>
+                  <td><span class="meal-pill">Roast</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="planner-note">(Interactive editing and smart list coming soon)</p>
+        </div>
+      </div> <!-- end of tab2 -->
       <!-- Tab 3: Shopping List (empty for now) -->
       <div id="tab3" class="tab-content">
         <h2>Shopping List</h2>
