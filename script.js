@@ -359,5 +359,240 @@ document.addEventListener('DOMContentLoaded', function () {
   if (s) s.addEventListener('input', filterInventory);
 });
 
+document.querySelector(".search-btn").addEventListener("click", function () {
+    const searchInput = document.querySelector(".mini-search").value.toLowerCase().trim();
+    const recipes = document.querySelectorAll(".recipe-item");
+    let found = false;
+
+    recipes.forEach((recipe) => {
+      const recipeName = recipe.querySelector(".recipe-name").textContent.toLowerCase();
+
+      // show card if name includes search input, otherwise hide
+      if (recipeName.includes(searchInput) || searchInput === "") {
+        recipe.style.display = "flex";
+        found = true;
+      } else {
+        recipe.style.display = "none";
+      }
+    });
+
+    // Optional: alert if nothing matched
+    if (!found && searchInput !== "") {
+      alert("No matching recipes found.");
+    }
+  });
+
+  
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const overlay  = document.getElementById("recipeModal");      // <div id="recipeModal" class="overlay hidden">
+  const closeBtn = overlay?.querySelector(".modal-close");       // the ✕ button
+  const titleEl  = document.getElementById("modalTitle");       
+  const bodyEl   = document.getElementById("modalContent");      
+
+  function openRecipeModalFrom(btn) {
+    const card   = btn.closest(".recipe-item");
+    const name   = card?.querySelector(".recipe-name")?.textContent?.trim() || "Recipe Details";
+    const status = card?.querySelector(".recipe-status")?.textContent?.trim() || "";
+
+    titleEl.textContent = name;
+    bodyEl.textContent  = status ? `Status: ${status}` : "This is a placeholder modal for your recipe.";
+
+    overlay.classList.remove("hidden");
+    overlay.classList.add("show");
+    overlay.setAttribute("aria-hidden", "false");
+    closeBtn?.focus();
+  }
+
+  function closeRecipeModal() {
+    overlay.classList.remove("show");
+    overlay.classList.add("hidden");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  
+  document.querySelectorAll("#tab4 .view-btn").forEach(btn => {
+    btn.addEventListener("click", () => openRecipeModalFrom(btn));
+  });
+
+ 
+  closeBtn?.addEventListener("click", closeRecipeModal);
+
+
+  overlay?.addEventListener("click", (e) => {
+    if (e.target === overlay) closeRecipeModal();
+  });
+
+  
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && overlay?.classList.contains("show")) {
+      closeRecipeModal();
+    }
+  });
+});
+
+
+
+function editMealHandler(e) {
+  const btn = e.target.closest(".mealplan-btn");
+  if (!btn) return;
+
+  const row = btn.closest(".mealplan-row");
+  const nameEl = row?.querySelector(".mealplan-meal");
+  if (!row || !nameEl) return;
+
+  const current = nameEl.textContent.trim();
+  const isAdd = btn.classList.contains("add");
+
+  const next = prompt(
+    isAdd ? "Add a recipe for this day:" : "Edit meal name:",
+    isAdd ? "" : current
+  );
+  if (next === null) return;          // user hit Cancel
+
+  const cleaned = next.trim();
+  if (!cleaned) return;               // ignore empty submit
+
+  nameEl.textContent = cleaned;
+
+  // If it was an "Add" button, switch it to "Edit"
+  if (isAdd) {
+    btn.classList.remove("add");
+    btn.textContent = "Edit ✏️";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Event delegation: one listener for all current/future rows
+  const mealPlanCard = document.querySelector(".mealplan-card");
+  if (mealPlanCard) {
+    mealPlanCard.addEventListener("click", editMealHandler);
+    // Debug log to confirm binding
+    console.log("[MealPlan] handler attached:", true);
+  }
+});
+  
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mealPlanCard = document.querySelector(".mealplan-card");
+  if (!mealPlanCard) return;
+
+  mealPlanCard.addEventListener("click", (e) => {
+    const removeBtn = e.target.closest(".remove-day-btn");
+    if (!removeBtn) return;
+
+    const row = removeBtn.closest(".mealplan-row");
+    const day = row.querySelector(".mealplan-day")?.textContent || "this day";
+
+    const confirmDelete = confirm(`Remove ${day} from your weekly meal plan?`);
+    if (confirmDelete) {
+      row.remove();
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mealPlanCard = document.querySelector(".mealplan-card");
+  if (!mealPlanCard) return;
+
+  const ALL_DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const DAY_INDEX = Object.fromEntries(ALL_DAYS.map((d,i)=>[d,i]));
+  const NAME_MAP = {
+    monday:"Mon", mon:"Mon",
+    tuesday:"Tue", tue:"Tue", tues:"Tue",
+    wednesday:"Wed", wed:"Wed",
+    thursday:"Thu", thu:"Thu", thurs:"Thu",
+    friday:"Fri", fri:"Fri",
+    saturday:"Sat", sat:"Sat",
+    sunday:"Sun", sun:"Sun"
+  };
+
+  function getUsedDays(card) {
+    return Array.from(card.querySelectorAll(".mealplan-day"))
+      .map(el => el.textContent.trim());
+  }
+
+  function getRemainingDays(card) {
+    const used = new Set(getUsedDays(card));
+    return ALL_DAYS.filter(d => !used.has(d));
+  }
+
+  function normalizeDayInput(input) {
+    if (!input) return null;
+    const s = input.trim().toLowerCase();
+    return NAME_MAP[s] || null; // only accept valid names
+  }
+
+  function createMealRow(day, mealText = "TBD") {
+    const row = document.createElement("div");
+    row.className = "mealplan-row";
+    row.innerHTML = `
+      <span class="mealplan-day">${day}</span>
+      <span class="mealplan-meal">${mealText}</span>
+      <div class="mealplan-actions">
+        <button class="mealplan-btn add" type="button">Add Recipe ➕</button>
+        <button class="remove-day-btn" type="button">🗑️</button>
+      </div>
+    `;
+    return row;
+  }
+
+  function insertRowInWeekOrder(card, row) {
+    const newDay = row.querySelector(".mealplan-day").textContent.trim();
+    const newIdx = DAY_INDEX[newDay];
+
+    const rows = card.querySelectorAll(".mealplan-row");
+    let inserted = false;
+    for (const r of rows) {
+      const d = r.querySelector(".mealplan-day")?.textContent?.trim();
+      if (d == null) continue;
+      if (DAY_INDEX[d] > newIdx) {
+        r.before(row);
+        inserted = true;
+        break;
+      }
+    }
+    if (!inserted) {
+      // place before footer if present, else append
+      const footer = card.querySelector(".mealplan-footer");
+      (footer ? footer : card).before ? footer.before(row) : card.appendChild(row);
+      if (!footer) card.appendChild(row);
+    }
+  }
+
+  // Add Day button logic
+  mealPlanCard.addEventListener("click", (e) => {
+    const addDayBtn = e.target.closest(".add-day-btn");
+    if (!addDayBtn) return;
+
+    const remaining = getRemainingDays(mealPlanCard);
+    if (remaining.length === 0) {
+      alert("All days are already present.");
+      return;
+    }
+
+    const answer = prompt(
+      `Add which day? (Available: ${remaining.join(", ")})`,
+      remaining[0]
+    );
+    const day = normalizeDayInput(answer);
+    if (!day) return; // invalid or canceled
+
+    // Guard against race conditions / duplicates
+    if (!getRemainingDays(mealPlanCard).includes(day)) {
+      alert(`${day} is already in your plan.`);
+      return;
+    }
+
+    const newRow = createMealRow(day, "TBD");
+    insertRowInWeekOrder(mealPlanCard, newRow);
+  });
+});
+  
+  
+  
+
+
+
 
 
